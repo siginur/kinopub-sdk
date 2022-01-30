@@ -105,6 +105,42 @@ public class KPSession {
         }
     }
     
+    public func updateCurrentDevice(title: String?, hardware: String?, software: String?, completionHandler: @escaping (KPError?) -> ()) {
+        var body = [String: String]()
+        if let title = title {
+            body["title"] = title
+        }
+        if let hardware = hardware {
+            body["hardware"] = hardware
+        }
+        if let software = software {
+            body["software"] = software
+        }
+        guard body.count > 0 else {
+            DispatchQueue.global().async {
+                completionHandler(KPError.wrongInputParameters)
+            }
+            return
+        }
+        let data: Data
+        do {
+            data = try JSONSerialization.data(withJSONObject: body, options: [])
+        } catch {
+            DispatchQueue.global().async {
+                completionHandler(KPError.other(error))
+            }
+            return
+        }
+        API.shared.send(accessToken: accessToken, httpMethod: .post, path: "/v1/device/notify", body: data) { result in
+            switch result {
+            case .success:
+                completionHandler(nil)
+            case .failure(let error):
+                completionHandler(KPError.apiError(error))
+            }
+        }
+    }
+    
     public func getWatchlist(completionHandler: @escaping (Result<[KPWatchingSerial], KPError>) -> ()) {
         API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/watching/serials", queryParams: ["subscribed": "1"]) { result in
             switch result {
@@ -238,6 +274,19 @@ public extension KPSession {
         return try await withCheckedThrowingContinuation({ continuation in
             currentDevice(completionHandler: continuation.resume(with:))
         })
+    }
+    
+    func updateCurrentDevice(title: String?, hardware: String?, software: String?) async throws {
+        try await withCheckedThrowingContinuation({ continuation in
+            self.updateCurrentDevice(title: title, hardware: hardware, software: software) { error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                }
+                else {
+                    continuation.resume()
+                }
+            }
+        }) as Void
     }
     
     func getWatchlist() async throws -> [KPWatchingSerial] {

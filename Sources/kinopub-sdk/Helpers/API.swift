@@ -15,20 +15,9 @@ class API {
         "Content-Type": "application/json",
         "Cache-Control": "no-store"
     ]
-    
-//    private var retriexws = 0
-//    static let clientId: String = "plex"
-//    static let clientSecret: String = "h2zx6iom02t9cxydcmbo9oi0llld7jsv"
-//    static var accessToken: String = {
-//        return UserDefaults.standard.string(forKey: "accessToken") ?? ""
-//    }()
-//    static var refreshToken: String = {
-//        return UserDefaults.standard.string(forKey: "refreshToken") ?? ""
-//    }()
 
     private let queue: DispatchQueue
     private let session: URLSession
-//    var tasks = Dictionary<ApiMethod, (task: URLSessionDataTask, progressBlock: ((Int64, Int64, Int64) -> ())?)>()
     
     private init() {
         queue = DispatchQueue(label: "com.merkova.kinopub-sdk.api-queue", qos: .default)
@@ -109,7 +98,7 @@ class API {
             return
         }
         
-        sendRaw(httpMethod: httpMethod, url: url) { result in
+        sendRaw(httpMethod: httpMethod, url: url, body: body) { result in
             switch result {
             case .success((let data, let response)):
                 if response.statusCode == 200 {

@@ -29,10 +29,9 @@ public struct KinoPubSDK {
             API.shared.getAccessToken(clientId: Storage.Auth.clientId, clientSecret: Storage.Auth.clientSecret, code: code) { result in
                 switch result {
                 case .success(let info):
-                    updateHandler(.session(KPSession(authInfo: info)))
-                    if let bodyData = try? JSONSerialization.data(withJSONObject: deviceInfo, options: []) {
-                        API.shared.send(accessToken: info.accessToken, httpMethod: .post, path: "/v1/device/notify", body: bodyData) { _ in }
-                    }
+                    let session = KPSession(authInfo: info)
+                    updateHandler(.session(session))
+                    session.updateCurrentDevice(title: self.appTitle, hardware: self.hardware, software: self.software) { _ in }
                 case .failure(let error):
                     if case APIError.apiErrorResponse(let responseError) = error, responseError.message == "authorization_pending" {
                         if Date().timeIntervalSince1970 + TimeInterval(5) > expiryTime {
@@ -50,7 +49,32 @@ public struct KinoPubSDK {
         }
     }
     
-    private static var deviceInfo: [String: String] {
+    private static var hardware: String {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        if identifier == "i386" || identifier == "x86_64" {
+            if let simulatorIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
+                return "Simulator " + simulatorIdentifier
+            }
+            else {
+                return identifier
+            }
+        }
+        else {
+            return identifier
+        }
+    }
+    
+    private static var appTitle: String {
+        Storage.Auth.deviceName ?? Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? "KinoPub Swift SDK"
+    }
+    
+    private static var software: String {
         let platformName = {
 #if os(iOS)
             return "iOS"
@@ -73,34 +97,7 @@ public struct KinoPubSDK {
         .map { String($0) }
         .joined(separator: ".")
         
-        let hardware: String = {
-            var systemInfo = utsname()
-            uname(&systemInfo)
-            let machineMirror = Mirror(reflecting: systemInfo.machine)
-            let identifier = machineMirror.children.reduce("") { identifier, element in
-                guard let value = element.value as? Int8, value != 0 else { return identifier }
-                return identifier + String(UnicodeScalar(UInt8(value)))
-            }
-            if identifier == "i386" || identifier == "x86_64" {
-                if let simulatorIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
-                    return "Simulator " + simulatorIdentifier
-                }
-                else {
-                    return identifier
-                }
-            }
-            else {
-                return identifier
-            }
-        }()
-        
-        let title = Storage.Auth.deviceName ?? Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? "KinoPub Swift SDK"
-        
-        return [
-            "title": title,
-            "hardware": hardware,
-            "software": platformName + " " + platformVersion
-        ]
+        return platformName + " " + platformVersion
     }
 
     private init() {}

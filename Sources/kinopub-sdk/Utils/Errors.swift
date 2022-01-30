@@ -73,7 +73,9 @@ public enum ParsingError: Error, CustomStringConvertible {
 public enum KPError: Error, CustomStringConvertible {
     case noRefreshToken
     case noActiveSession
+    case wrongInputParameters
     case apiError(APIError)
+    case other(Error)
     
     public var localizedDescription: String {
         switch self {
@@ -81,7 +83,11 @@ public enum KPError: Error, CustomStringConvertible {
             return "Refresh token not found"
         case .noActiveSession:
             return "Active session not found"
+        case .wrongInputParameters:
+            return "Wrong input parameters"
         case .apiError(let error):
+            return error.localizedDescription
+        case .other(let error):
             return error.localizedDescription
         }
     }

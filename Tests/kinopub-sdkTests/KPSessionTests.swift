@@ -62,6 +62,36 @@ class KPSessionTests: XCTestCase {
         wait(for: [expectation], timeout: defaultWaitTime)
     }
     
+    func testUpdateCurrentDeivce() throws {
+        let expectation = XCTestExpectation(description: "Update current device")
+
+        let title = "Title test \(Int.random(in: 1..<1000000000))"
+        let hardware = "Hardware test \(Int.random(in: 1..<1000000000))"
+        let software = "Software test \(Int.random(in: 1..<1000000000))"
+        
+        KPSession.current.updateCurrentDevice(title: title, hardware: hardware, software: software) { error in
+            guard error == nil else {
+                XCTFail("Failed to update current device: \(error!)")
+                expectation.fulfill()
+                return
+            }
+            
+            KPSession.current.currentDevice { result in
+                do {
+                    let device = try result.get()
+                    XCTAssertEqual(device.title, title)
+                    XCTAssertEqual(device.hardware, hardware)
+                    XCTAssertEqual(device.software, software)
+                } catch {
+                    XCTFail("Unable to check device info after update: \(error)")
+                }
+                expectation.fulfill()
+            }
+        }
+        
+        wait(for: [expectation], timeout: defaultWaitTime * 2)
+    }
+    
     func testGetWatchlist() throws {
         let expectation = XCTestExpectation(description: "Get watching serials")
         
