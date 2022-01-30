@@ -41,3 +41,17 @@ public class KPEpisode {
     }
 
 }
+
+
+// MARK: - Async/Await wrappers
+
+@available(tvOS 13.0.0, watchOS 6.0, iOS 13.0.0, macOS 10.15.0, *)
+public extension KPEpisode {
+    
+    func getMediaLinks(session: KPSession? = KPSession.current) async throws -> KPMediaLinks {
+        try await withCheckedThrowingContinuation({ continuation in
+            getMediaLinks(session: session, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+}

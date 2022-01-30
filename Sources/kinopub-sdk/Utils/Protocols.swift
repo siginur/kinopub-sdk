@@ -28,3 +28,17 @@ extension CouldBeInWatchList {
         }
     }
 }
+
+
+// MARK: - Async/Await wrappers
+
+@available(tvOS 13.0.0, watchOS 6.0, iOS 13.0.0, macOS 10.15.0, *)
+extension CouldBeInWatchList {
+    
+    public func toggleWatchList(session: KPSession? = KPSession.current) async throws -> Bool {
+        try await withCheckedThrowingContinuation({ continuation in
+            toggleWatchList(session: session, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+}

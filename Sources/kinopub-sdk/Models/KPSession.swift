@@ -203,12 +203,76 @@ public class KPSession {
     
 }
 
+
+// MARK: - Async/Await wrappers
+
 @available(tvOS 13.0.0, watchOS 6.0, iOS 13.0.0, macOS 10.15.0, *)
 public extension KPSession {
+    
+    func refresh() async throws {
+        try await withCheckedThrowingContinuation({ continuation in
+            self.refresh { error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                }
+                else {
+                    continuation.resume()
+                }
+            }
+        }) as Void
+    }
         
     func userInfo() async throws -> KPUser {
-        try await withCheckedThrowingContinuation({ continuation in
+        return try await withCheckedThrowingContinuation({ continuation in
             userInfo(completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func allDevices() async throws -> [KPDevice] {
+        return try await withCheckedThrowingContinuation({ continuation in
+            allDevices(completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func currentDevice() async throws -> KPDevice {
+        return try await withCheckedThrowingContinuation({ continuation in
+            currentDevice(completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getWatchlist() async throws -> [KPWatchingSerial] {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getWatchlist(completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getContent(byId id: Int) async throws -> KPContent {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getContent(byId: id, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getSerial(byId id: Int) async throws -> KPSerial {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getSerial(byId: id, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getMovie(byId id: Int) async throws -> KPMovie {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getMovie(byId: id, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getMediaLinks(byId id: Int) async throws -> KPMediaLinks {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getMediaLinks(byId: id, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getVideoLink(byFilename file: String, type: String) async throws -> URL {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getVideoLink(byFilename: file, type: type, completionHandler: continuation.resume(with:))
         })
     }
     

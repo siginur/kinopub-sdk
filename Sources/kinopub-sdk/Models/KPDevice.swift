@@ -63,3 +63,24 @@ public extension KPDevice {
     }
     
 }
+
+
+// MARK: - Async/Await wrappers
+
+@available(tvOS 13.0.0, watchOS 6.0, iOS 13.0.0, macOS 10.15.0, *)
+public extension KPDevice {
+    
+    func remove(session: KPSession? = KPSession.current) async throws {
+        try await withCheckedThrowingContinuation({ continuation in
+            self.remove { error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                }
+                else {
+                    continuation.resume()
+                }
+            }
+        }) as Void
+    }
+
+}
