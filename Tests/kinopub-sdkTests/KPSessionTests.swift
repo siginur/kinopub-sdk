@@ -11,9 +11,21 @@ import XCTest
 class KPSessionTests: XCTestCase {
 
     let defaultWaitTime: TimeInterval = 5.0
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
     
     override class func setUp() {
         KPSession(clientId: "", clientSecret: "", accessToken: accessToken).activate()
+    }
+    
+    func testCodable() throws {
+        let source = KPSession(clientId: "clientId", clientSecret: "clientSecret", accessToken: "accessToken", refreshToken: "refreshToken", expiryDate: Date())
+        
+        let encoded = try encoder.encode(source)
+        let decoded = try decoder.decode(KPSession.self, from: encoded)
+        
+        XCTAssertEqual(decoded, source)
+        XCTAssertTrue(decoded == source)
     }
     
     func testUserInfo() throws {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPDevice: DecodableFromRawData {
+public class KPDevice: Codable, Equatable, DecodableFromRawData {
     
     public let id: Int
     public let title: String
@@ -31,6 +31,18 @@ public class KPDevice: DecodableFromRawData {
         self.settings = try raw.parse(key: "settings")
     }
     
+    public init(id: Int, title: String, hardware: String, software: String, created: Date, updated: Date, lastSeen: Date, isBrowser: Bool, settings: KPDevice.Settings) {
+        self.id = id
+        self.title = title
+        self.hardware = hardware
+        self.software = software
+        self.created = created
+        self.updated = updated
+        self.lastSeen = lastSeen
+        self.isBrowser = isBrowser
+        self.settings = settings
+    }
+    
     public func remove(session: KPSession? = KPSession.current, completionHandler: @escaping (KPError?) -> ()) {
         API.shared.send(accessToken: session?.accessToken, httpMethod: .post, path: "/v1/devide/\(id)/remove") { result in
             switch result {
@@ -42,22 +54,48 @@ public class KPDevice: DecodableFromRawData {
         }
     }
     
+    public static func == (lhs: KPDevice, rhs: KPDevice) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.title == rhs.title &&
+        lhs.hardware == rhs.hardware &&
+        lhs.software == rhs.software &&
+        lhs.created == rhs.created &&
+        lhs.updated == rhs.updated &&
+        lhs.lastSeen == rhs.lastSeen &&
+        lhs.isBrowser == rhs.isBrowser &&
+        lhs.settings == rhs.settings
+    }
+    
 }
 
 public extension KPDevice {
     
-    class Settings: DecodableFromRawData {
+    class Settings: Codable, Equatable, DecodableFromRawData {
         
         public let supportSSL: Bool
         public let supportHEVC: Bool
         public let supportHDR: Bool
         public let support4k: Bool
         
-        required init(raw: RawData) throws {
+        internal required init(raw: RawData) throws {
             self.supportSSL  = try raw.parse(path: ["supportSsl", "value"]) == 1
             self.supportHEVC = try raw.parse(path: ["supportHevc", "value"]) == 1
             self.supportHDR  = try raw.parse(path: ["supportHdr", "value"]) == 1
             self.support4k   = try raw.parse(path: ["support4k", "value"]) == 1
+        }
+        
+        public init(supportSSL: Bool, supportHEVC: Bool, supportHDR: Bool, support4k: Bool) {
+            self.supportSSL = supportSSL
+            self.supportHEVC = supportHEVC
+            self.supportHDR = supportHDR
+            self.support4k = support4k
+        }
+        
+        public static func == (lhs: KPDevice.Settings, rhs: KPDevice.Settings) -> Bool {
+            return lhs.supportSSL == rhs.supportSSL &&
+            lhs.supportHEVC == rhs.supportHEVC &&
+            lhs.supportHDR == rhs.supportHDR &&
+            lhs.support4k == rhs.support4k
         }
         
     }

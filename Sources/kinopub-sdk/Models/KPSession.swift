@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPSession {
+public class KPSession: Codable, Equatable {
     
     public private(set) static var current: KPSession! = nil
     
@@ -31,6 +31,14 @@ public class KPSession {
         self.accessToken = authInfo.accessToken
         self.refreshToken = authInfo.refreshToken
         self.expiryDate = Date(timeIntervalSinceNow: authInfo.expiresIn - 2 * 60)
+    }
+    
+    public static func == (lhs: KPSession, rhs: KPSession) -> Bool {
+        return lhs.clientId == rhs.clientId &&
+        lhs.clientSecret == rhs.clientSecret &&
+        lhs.accessToken == rhs.accessToken &&
+        lhs.refreshToken == rhs.refreshToken &&
+        lhs.expiryDate == rhs.expiryDate
     }
     
     public func activate() {

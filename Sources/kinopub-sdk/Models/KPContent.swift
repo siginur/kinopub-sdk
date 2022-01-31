@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPContent: DecodableFromRawData {
+public class KPContent: Codable, Equatable, DecodableFromRawData {
     
     public let id: Int
     public let title: String
@@ -17,6 +17,18 @@ public class KPContent: DecodableFromRawData {
         self.id = try raw.parse(key: "id")
         self.type = try raw.parse(key: "type")
         self.title = try raw.parse(key: "title")
+    }
+    
+    public init(id: Int, title: String, type: String) {
+        self.id = id
+        self.title = title
+        self.type = type
+    }
+    
+    public static func == (lhs: KPContent, rhs: KPContent) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.title == rhs.title &&
+        lhs.type == rhs.type
     }
     
 }

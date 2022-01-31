@@ -7,7 +7,8 @@
 
 import Foundation
 
-public class KPEpisode {
+public class KPEpisode: Codable, Equatable {
+    
     public let contentId: Int
     public let seasonId: Int?
     public let id: Int
@@ -30,6 +31,18 @@ public class KPEpisode {
         self.updated = try? raw.parse(key: "updated")
     }
     
+    public init(contentId: Int, seasonId: Int?, id: Int, number: Int, title: String, duration: TimeInterval, time: TimeInterval, status: Int, updated: Date?) {
+        self.contentId = contentId
+        self.seasonId = seasonId
+        self.id = id
+        self.number = number
+        self.title = title
+        self.duration = duration
+        self.time = time
+        self.status = status
+        self.updated = updated
+    }
+    
     public func getMediaLinks(session: KPSession? = KPSession.current, completionHandler: @escaping (Result<KPMediaLinks, KPError>) -> ()) {
         guard let session = session else {
             DispatchQueue.global().async {
@@ -38,6 +51,18 @@ public class KPEpisode {
             return
         }
         session.getMediaLinks(byId: self.id, completionHandler: completionHandler)
+    }
+    
+    public static func == (lhs: KPEpisode, rhs: KPEpisode) -> Bool {
+        return lhs.contentId == rhs.contentId &&
+        lhs.seasonId == rhs.seasonId &&
+        lhs.id == rhs.id &&
+        lhs.number == rhs.number &&
+        lhs.title == rhs.title &&
+        lhs.duration == rhs.duration &&
+        lhs.time == rhs.time &&
+        lhs.status == rhs.status &&
+        lhs.updated == rhs.updated
     }
 
 }
