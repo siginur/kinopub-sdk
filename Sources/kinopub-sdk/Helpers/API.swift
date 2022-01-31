@@ -150,10 +150,10 @@ public class APIResponse {
         self.data = data
     }
     
-    func json() throws -> RawData {
+    func json() throws -> KPJson {
         let object = try JSONSerialization.jsonObject(with: data, options: [])
-        guard let convertedObject = object as? RawData else {
-            throw ParsingError.wrongType(key: NSNull(), expectedType: String(describing: RawData.self), actualType: String(describing: Swift.type(of: object)))
+        guard let convertedObject = object as? KPJson else {
+            throw ParsingError.wrongType(key: NSNull(), expectedType: String(describing: KPJson.self), actualType: String(describing: Swift.type(of: object)))
         }
         return convertedObject
     }
@@ -163,24 +163,24 @@ public class APIResponse {
         return try decoder.decode(type, from: data)
     }
     
-    func decode<T: DecodableFromRawData>(type: T.Type) throws -> T {
-        return try T.init(raw: json())
+    func decode<T: KPJsonRepresentable>(type: T.Type) throws -> T {
+        return try T.init(json: json())
     }
     
-    func decode<T: DecodableFromRawData>(key: String, type: T.Type) throws -> T {
-        return try T.init(raw: json().parse(key: key))
+    func decode<T: KPJsonRepresentable>(key: String, type: T.Type) throws -> T {
+        return try T.init(json: json().parse(key: key))
     }
     
-    func decode<T: DecodableFromRawData>(path: [String], type: T.Type) throws -> T {
-        return try T.init(raw: json().parse(path: path))
+    func decode<T: KPJsonRepresentable>(path: [String], type: T.Type) throws -> T {
+        return try T.init(json: json().parse(path: path))
     }
     
-    func decode<T: DecodableFromRawData>(key: String, type: [T].Type) throws -> [T] {
-        return try json().parse(key: key, type: [RawData].self).map(T.init(raw:))
+    func decode<T: KPJsonRepresentable>(key: String, type: [T].Type) throws -> [T] {
+        return try json().parse(key: key, type: [KPJson].self).map(T.init(json:))
     }
     
-    func decode<T: DecodableFromRawData>(path: [String], type: [T].Type) throws -> [T] {
-        return try json().parse(path: path, type: [RawData].self).map(T.init(raw:))
+    func decode<T: KPJsonRepresentable>(path: [String], type: [T].Type) throws -> [T] {
+        return try json().parse(path: path, type: [KPJson].self).map(T.init(json:))
     }
 }
 

@@ -19,7 +19,7 @@ public class KPEpisode: Codable, Equatable {
     public let status: Int
     public let updated: Date?
     
-    required init(contentId: Int, seasonId: Int?, raw: RawData) throws {
+    public required init(contentId: Int, seasonId: Int?, raw: KPJson) throws {
         self.contentId = contentId
         self.seasonId = seasonId
         self.id = try raw.parse(key: "id")

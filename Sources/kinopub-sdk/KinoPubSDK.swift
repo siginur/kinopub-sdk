@@ -1,6 +1,6 @@
 import Foundation
 
-typealias RawData = Dictionary<String, Any>
+public typealias KPJson = Dictionary<String, Any>
 
 public struct KinoPubSDK {
     

@@ -7,16 +7,16 @@
 
 import Foundation
 
-public class KPContent: Codable, Equatable, DecodableFromRawData {
+public class KPContent: Codable, Equatable, KPJsonRepresentable {
     
     public let id: Int
     public let title: String
     public let type: String
     
-    required init(raw: RawData) throws {
-        self.id = try raw.parse(key: "id")
-        self.type = try raw.parse(key: "type")
-        self.title = try raw.parse(key: "title")
+    public required init(json: KPJson) throws {
+        self.id = try json.parse(key: "id")
+        self.type = try json.parse(key: "type")
+        self.title = try json.parse(key: "title")
     }
     
     public init(id: Int, title: String, type: String) {

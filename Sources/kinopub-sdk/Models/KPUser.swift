@@ -7,19 +7,19 @@
 
 import Foundation
 
-public class KPUser: Codable, Equatable, DecodableFromRawData {
+public class KPUser: Codable, Equatable, KPJsonRepresentable {
     public let username: String
     public let name: String
     public let avatar: URL
     public let registrationDate: Date
     public let subscriptionExpiryDate: Date
     
-    required init(raw: RawData) throws {
-        username = try raw.parse(key: "username")
-        registrationDate = try raw.parse(key: "reg_date")
-        name = try raw.parse(path: ["profile", "name"])
-        avatar = try raw.parse(path: ["profile", "avatar"])
-        subscriptionExpiryDate = try raw.parse(path: ["subscription", "end_time"])
+    public required init(json: KPJson) throws {
+        username = try json.parse(key: "username")
+        registrationDate = try json.parse(key: "reg_date")
+        name = try json.parse(path: ["profile", "name"])
+        avatar = try json.parse(path: ["profile", "avatar"])
+        subscriptionExpiryDate = try json.parse(path: ["subscription", "end_time"])
     }
     
     public init(username: String, name: String, avatar: URL, registrationDate: Date, subscriptionExpiryDate: Date) {

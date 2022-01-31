@@ -34,8 +34,8 @@ extension Dictionary where Key == String, Value == Any {
         return try self.parse(key: key, type: TimeInterval.self)
     }
     
-    func parse(key: Key) throws -> RawData {
-        return try self.parse(key: key, type: RawData.self)
+    func parse(key: Key) throws -> KPJson {
+        return try self.parse(key: key, type: KPJson.self)
     }
     
     func parse(key: Key) throws -> Date {
@@ -49,14 +49,14 @@ extension Dictionary where Key == String, Value == Any {
         return url
     }
     
-    func parse<T: DecodableFromRawData>(key: Key) throws -> T {
-        return try T.init(raw: self.parse(key: key, type: RawData.self))
+    func parse<T: KPJsonRepresentable>(key: Key) throws -> T {
+        return try T.init(json: self.parse(key: key, type: KPJson.self))
     }
     
     func parse<T>(path: [Key], type: T.Type) throws -> T {
         var element = self
         for key in path.dropLast() {
-            element = try element.parse(key: key, type: RawData.self)
+            element = try element.parse(key: key, type: KPJson.self)
         }
         return try element.parse(key: path.last!, type: type)
     }
@@ -77,8 +77,8 @@ extension Dictionary where Key == String, Value == Any {
         return try self.parse(path: path, type: TimeInterval.self)
     }
     
-    func parse(path: [Key]) throws -> RawData {
-        return try self.parse(path: path, type: RawData.self)
+    func parse(path: [Key]) throws -> KPJson {
+        return try self.parse(path: path, type: KPJson.self)
     }
     
     func parse(path: [Key]) throws -> Date {
@@ -92,7 +92,7 @@ extension Dictionary where Key == String, Value == Any {
         return url
     }
     
-    func parse<T: DecodableFromRawData>(path: [Key]) throws -> T {
-        return try T.init(raw: self.parse(path: path, type: RawData.self))
+    func parse<T: KPJsonRepresentable>(path: [Key]) throws -> T {
+        return try T.init(json: self.parse(path: path, type: KPJson.self))
     }
 }

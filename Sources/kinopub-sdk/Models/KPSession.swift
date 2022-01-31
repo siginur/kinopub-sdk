@@ -169,12 +169,12 @@ public class KPSession: Codable, Equatable {
             switch result {
             case .success(let response):
                 do {
-                    let item: RawData = try response.json().parse(key: "item")
+                    let item: KPJson = try response.json().parse(key: "item")
                     if try item.parse(key: "type") == "serial" {
-                        completionHandler(.success(try KPSerial(raw: item)))
+                        completionHandler(.success(try KPSerial(json: item)))
                     }
                     else {
-                        completionHandler(.success(try KPMovie(raw: item)))
+                        completionHandler(.success(try KPMovie(json: item)))
                     }
                 } catch {
                     completionHandler(.failure(.apiError(.parsingError(error))))

@@ -7,8 +7,18 @@
 
 import Foundation
 
-protocol DecodableFromRawData {
-    init(raw: RawData) throws
+public protocol KPJsonRepresentable {
+    init(json: KPJson) throws
+    init(jsonData: Data) throws
+}
+public extension KPJsonRepresentable {
+    init(jsonData: Data) throws {
+        let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
+        guard let jsonData = jsonObject as? KPJson else {
+            throw ParsingError.wrongType(key: NSNull(), expectedType: String(describing: KPJson.self), actualType: String(describing: Swift.type(of: jsonObject).self))
+        }
+        try self.init(json: jsonData)
+    }
 }
 
 protocol CouldBeInWatchList: KPContent {}

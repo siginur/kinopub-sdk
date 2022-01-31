@@ -7,15 +7,15 @@
 
 import Foundation
 
-public class KPMediaLinks: Codable, Equatable, DecodableFromRawData {
+public class KPMediaLinks: Codable, Equatable, KPJsonRepresentable {
     public let id: Int
     public let files: [File]
     public let subtitles: [Subtitle]
     
-    required init(raw: RawData) throws {
-        self.id = try raw.parse(key: "id")
-        self.files = try raw.parse(key: "files", type: [RawData].self).map(File.init(raw:))
-        self.subtitles = try raw.parse(key: "subtitles", type: [RawData].self).map(Subtitle.init(raw:))
+    public required init(json: KPJson) throws {
+        self.id = try json.parse(key: "id")
+        self.files = try json.parse(key: "files", type: [KPJson].self).map(File.init(json:))
+        self.subtitles = try json.parse(key: "subtitles", type: [KPJson].self).map(Subtitle.init(json:))
     }
     
     public init(id: Int, files: [KPMediaLinks.File], subtitles: [KPMediaLinks.Subtitle]) {
@@ -32,7 +32,7 @@ public class KPMediaLinks: Codable, Equatable, DecodableFromRawData {
 }
 
 public extension KPMediaLinks {
-    class File: Codable, Equatable, DecodableFromRawData {
+    class File: Codable, Equatable, KPJsonRepresentable {
         public let codec: String
         public let width: Int
         public let height: Int
@@ -40,14 +40,14 @@ public extension KPMediaLinks {
         public let file: String
         public let url: [String: URL]
         
-        internal required init(raw: RawData) throws {
-            self.codec = try raw.parse(key: "codec")
-            self.width = try raw.parse(key: "w")
-            self.height = try raw.parse(key: "h")
-            self.quality = try raw.parse(key: "quality")
-            self.file = try raw.parse(key: "file")
+        public required init(json: KPJson) throws {
+            self.codec = try json.parse(key: "codec")
+            self.width = try json.parse(key: "w")
+            self.height = try json.parse(key: "h")
+            self.quality = try json.parse(key: "quality")
+            self.file = try json.parse(key: "file")
             
-            let urls = try raw.parse(key: "url", type: RawData.self)
+            let urls = try json.parse(key: "url", type: KPJson.self)
             var url = [String: URL]()
             for (key, value) in urls {
                 guard let value = value as? String, let link = URL(string: value) else {
@@ -77,7 +77,7 @@ public extension KPMediaLinks {
         }
     }
     
-    class Subtitle: Codable, Equatable, DecodableFromRawData {
+    class Subtitle: Codable, Equatable, KPJsonRepresentable {
         public let lang: String
         public let shift: Int
         public let embed: Bool
@@ -85,13 +85,13 @@ public extension KPMediaLinks {
         public let file: String
         public let url: URL
         
-        internal required init(raw: RawData) throws {
-            self.lang = try raw.parse(key: "lang")
-            self.shift = try raw.parse(key: "shift")
-            self.embed = try raw.parse(key: "embed")
-            self.forced = try raw.parse(key: "forced")
-            self.file = try raw.parse(key: "file")
-            self.url = try raw.parse(key: "url")
+        public required init(json: KPJson) throws {
+            self.lang = try json.parse(key: "lang")
+            self.shift = try json.parse(key: "shift")
+            self.embed = try json.parse(key: "embed")
+            self.forced = try json.parse(key: "forced")
+            self.file = try json.parse(key: "file")
+            self.url = try json.parse(key: "url")
         }
         
         public init(lang: String, shift: Int, embed: Bool, forced: Bool, file: String, url: URL) {

@@ -13,10 +13,10 @@ public class KPWatchingSerial: KPWatchingMovie, CouldBeInWatchList {
     public let new: Int
     public var total: Int { return watched + new }
 
-    required init(raw: RawData) throws {
-        self.watched = try raw.parse(key: "watched")
-        self.new = try raw.parse(key: "new")
-        try super.init(raw: raw)
+    public required init(json: KPJson) throws {
+        self.watched = try json.parse(key: "watched")
+        self.new = try json.parse(key: "new")
+        try super.init(json: json)
     }
     
     public init(id: Int, title: String, type: String, subtype: String, poster: Poster, watched: Int, new: Int) {

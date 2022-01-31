@@ -12,10 +12,10 @@ public class KPWatchingMovie: KPContent {
     public let subtype: String
     public let poster: Poster
     
-    required init(raw: RawData) throws {
-        self.subtype = try raw.parse(key: "subtype")
-        self.poster = try raw.parse(key: "posters")
-        try super.init(raw: raw)
+    public required init(json: KPJson) throws {
+        self.subtype = try json.parse(key: "subtype")
+        self.poster = try json.parse(key: "posters")
+        try super.init(json: json)
     }
     
     public init(id: Int, title: String, type: String, subtype: String, poster: Poster) {
@@ -52,15 +52,15 @@ public class KPWatchingMovie: KPContent {
 
 public extension KPWatchingMovie {
 
-    class Poster: Codable, Equatable, DecodableFromRawData {
+    class Poster: Codable, Equatable, KPJsonRepresentable {
         public let small: URL?
         public let medium: URL?
         public let big: URL?
         
-        internal required init(raw: RawData) throws {
-            self.small = try? raw.parse(key: "small")
-            self.medium = try? raw.parse(key: "medium")
-            self.big = try? raw.parse(key: "big")
+        public required init(json: KPJson) throws {
+            self.small = try? json.parse(key: "small")
+            self.medium = try? json.parse(key: "medium")
+            self.big = try? json.parse(key: "big")
         }
         
         public init(small: URL?, medium: URL?, big: URL?) {

@@ -10,9 +10,9 @@ import Foundation
 public class KPSerial: KPContent, CouldBeInWatchList {
     public let seasons: [Season]
     
-    required init(raw: RawData) throws {
-        self.seasons = try raw.parse(key: "seasons", type: [RawData].self).map({ season in try Season(serialId: raw.parse(key: "id"), raw: season) })
-        try super.init(raw: raw)
+    public required init(json: KPJson) throws {
+        self.seasons = try json.parse(key: "seasons", type: [KPJson].self).map({ season in try Season(serialId: json.parse(key: "id"), raw: season) })
+        try super.init(json: json)
     }
     
     public init(id: Int, title: String, type: String, seasons: [Season]) {
@@ -51,13 +51,13 @@ public extension KPSerial {
         public let status: Int
         public let episodes: [KPEpisode]
         
-        internal required init(serialId: Int, raw: RawData) throws {
+        public required init(serialId: Int, raw: KPJson) throws {
             self.serialId = serialId
             let id: Int = try raw.parse(key: "id")
             self.id = id
             self.number = try raw.parse(key: "number")
             self.status = try raw.parse(key: "status")
-            self.episodes = try raw.parse(key: "episodes", type: [RawData].self).map({ episode in try KPEpisode(contentId: serialId, seasonId: id, raw: episode) })
+            self.episodes = try raw.parse(key: "episodes", type: [KPJson].self).map({ episode in try KPEpisode(contentId: serialId, seasonId: id, raw: episode) })
         }
         
         public init(serialId: Int, id: Int, number: Int, status: Int, episodes: [KPEpisode]) {
