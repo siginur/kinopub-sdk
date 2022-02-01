@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPMediaLinks: Codable, Equatable, KPJsonRepresentable {
+public class KPMediaLinks: Codable, Equatable, Identifiable, KPJsonRepresentable {
     public let id: Int
     public let files: [File]
     public let subtitles: [Subtitle]

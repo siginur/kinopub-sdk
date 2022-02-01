@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPSession: Codable, Equatable {
+public class KPSession: Codable, Equatable, Identifiable {
     
     public private(set) static var current: KPSession! = nil
     

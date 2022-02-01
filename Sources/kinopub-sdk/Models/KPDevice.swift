@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPDevice: Codable, Equatable, KPJsonRepresentable {
+public class KPDevice: Codable, Equatable, Identifiable, KPJsonRepresentable {
     
     public let id: Int
     public let title: String

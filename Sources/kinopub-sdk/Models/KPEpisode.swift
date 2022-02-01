@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPEpisode: Codable, Equatable {
+public class KPEpisode: Codable, Equatable, Identifiable {
     
     public let contentId: Int
     public let seasonId: Int?

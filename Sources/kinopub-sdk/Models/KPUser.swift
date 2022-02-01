@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPUser: Codable, Equatable, KPJsonRepresentable {
+public class KPUser: Codable, Equatable, Identifiable, KPJsonRepresentable {
     public let username: String
     public let name: String
     public let avatar: URL
