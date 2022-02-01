@@ -53,17 +53,17 @@ public class KPWatchingMovie: KPContent {
 public extension KPWatchingMovie {
 
     class Poster: Codable, Equatable, KPJsonRepresentable {
-        public let small: URL?
-        public let medium: URL?
-        public let big: URL?
+        public let small: URL
+        public let medium: URL
+        public let big: URL
         
         public required init(json: KPJson) throws {
-            self.small = try? json.parse(key: "small")
-            self.medium = try? json.parse(key: "medium")
-            self.big = try? json.parse(key: "big")
+            self.small = try json.parse(key: "small")
+            self.medium = try json.parse(key: "medium")
+            self.big = try json.parse(key: "big")
         }
         
-        public init(small: URL?, medium: URL?, big: URL?) {
+        public init(small: URL, medium: URL, big: URL) {
             self.small = small
             self.medium = medium
             self.big = big

@@ -10,50 +10,25 @@ import SMStorage
 
 struct Storage {
     
-    private let userDefaults = SMStorage<SettingsKey>(userDefaults: UserDefaults.standard)
-    
-    private init() {}
-    
-}
-
-extension Storage {
-    
     struct Auth {
         
-        enum Key: String, StorageKey {
-            case clientId
-            case clientSecret
-            case deviceName
-            
-            var key: String { rawValue }
-        }
-        
-        private static let storage = SMStorage<Key>(memoryInitial: [:])
+        private static let storage = SMStorage.memory()
         
         static var clientId: String {
-            get { storage[.clientId].string ?? "" }
-            set { storage[.clientId] = newValue}
+            get { storage["clientId"] ?? "" }
+            set { storage["clientId"] = newValue}
         }
         
         static var clientSecret: String {
-            get { storage[.clientSecret].string ?? "" }
-            set { storage[.clientSecret] = newValue}
+            get { storage["clientSecret"] ?? "" }
+            set { storage["clientSecret"] = newValue}
         }
         
         static var deviceName: String? {
-            get { storage[.deviceName].string }
-            set { storage[.deviceName] = newValue}
+            get { storage["deviceName"] }
+            set { storage["deviceName"] = newValue}
         }
         
     }
     
-}
-
-enum SettingsKey: String, StorageKey {
-
-    case accessToken
-    case refreshToken
-    case tokenExpiryDate
-
-    var key: String { "com.merkova.kinopub-sdk." + rawValue }
 }
