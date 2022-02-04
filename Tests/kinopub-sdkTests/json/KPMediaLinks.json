@@ -1,0 +1,89 @@
+{
+  "id": 162259,
+  "files": [
+    {
+      "codec": "h264",
+      "w": 1920,
+      "h": 1080,
+      "quality": "1080p",
+      "quality_id": 3,
+      "file": "/f/22/1qURZkZBNWm0YUuyJ.mp4",
+      "url": {
+        "http": "https://selectelcdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/f/22/1qURZkZBNWm0YUuyJ.mp4?loc=nl",
+        "hls": "https://selectelcdn.net/hls/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/f/22/1qURZkZBNWm0YUuyJ.mp4/master-v1a1.m3u8?loc=nl",
+        "hls4": "https://selectelcdn.net/hls4/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/162259.m3u8?loc=nl",
+        "hls2": "https://selectelcdn.net/hls2/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/162259.m3u8?loc=nl"
+      }
+    },
+    {
+      "codec": "h264",
+      "w": 1280,
+      "h": 720,
+      "quality": "720p",
+      "quality_id": 2,
+      "file": "/8/e7/FbhpAepEQMI4n5iFU.mp4",
+      "url": {
+        "http": "https://selectelcdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/8/e7/FbhpAepEQMI4n5iFU.mp4?loc=nl",
+        "hls": "https://selectelcdn.net/hls/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/8/e7/FbhpAepEQMI4n5iFU.mp4/master-v1a1.m3u8?loc=nl",
+        "hls4": "https://selectelcdn.net/hls4/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/162259.m3u8?loc=nl",
+        "hls2": "https://selectelcdn.net/hls2/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/162259.m3u8?loc=nl"
+      }
+    },
+    {
+      "codec": "h264",
+      "w": 720,
+      "h": 406,
+      "quality": "480p",
+      "quality_id": 1,
+      "file": "/2/d6/10lg5gbxyb58jeWTK.mp4",
+      "url": {
+        "http": "https://selectelcdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/2/d6/10lg5gbxyb58jeWTK.mp4?loc=nl",
+        "hls": "https://selectelcdn.net/hls/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/2/d6/10lg5gbxyb58jeWTK.mp4/master-v1a1.m3u8?loc=nl",
+        "hls4": "https://selectelcdn.net/hls4/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/162259.m3u8?loc=nl",
+        "hls2": "https://selectelcdn.net/hls2/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/162259.m3u8?loc=nl"
+      }
+    }
+  ],
+  "subtitles": [
+    {
+      "lang": "eng",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/5/14/680257.srt",
+      "url": "https://selectelcdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/subtitles//5/14/680257.srt"
+    },
+    {
+      "lang": "eng",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/4/47/680287.srt",
+      "url": "https://selectelcdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/subtitles//4/47/680287.srt"
+    },
+    {
+      "lang": "rus",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/e/b1/680317.srt",
+      "url": "https://selectelcdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/subtitles//e/b1/680317.srt"
+    },
+    {
+      "lang": "ger",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/e/9e/680347.srt",
+      "url": "https://selectelcdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/subtitles//e/9e/680347.srt"
+    },
+    {
+      "lang": "fre",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/c/c3/680377.srt",
+      "url": "https://selectelcdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0MzUyNzcxOCZoPVBTNVVJNHl0bElSeG9JWmF4b2ZDWGcmZT0xNjQzNjE0MTE4/subtitles//c/c3/680377.srt"
+    }
+  ]
+}

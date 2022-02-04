@@ -1,0 +1,80 @@
+{
+  "id": 14997340,
+  "title": "Edge",
+  "hardware": "Win10",
+  "software": "Edge 0.0",
+  "created": 1639388883,
+  "updated": 1643228955,
+  "last_seen": 1643228955,
+  "is_browser": true,
+  "settings": {
+    "supportSsl": {
+      "value": 1,
+      "label": "Использовать SSL"
+    },
+    "supportHevc": {
+      "value": 0,
+      "label": "Поддержка HEVC"
+    },
+    "supportHdr": {
+      "value": 0,
+      "label": "Поддержка HDR"
+    },
+    "support4k": {
+      "value": 0,
+      "label": "Поддержка 4K"
+    },
+    "mixedPlaylist": {
+      "value": 0,
+      "label": "Смешанный плейлист"
+    },
+    "serverLocation": {
+      "type": "list",
+      "value": [
+        {
+          "id": 1,
+          "label": "Нидерланды",
+          "description": "",
+          "selected": 1
+        },
+        {
+          "id": 3,
+          "label": "Россия",
+          "description": "",
+          "selected": 0
+        }
+      ],
+      "label": "Переключиться на сервер"
+    },
+    "streamingType": {
+      "type": "list",
+      "value": [
+        {
+          "id": 1,
+          "label": "HTTP",
+          "description": "HTTP псевдо стриминг",
+          "selected": 0
+        },
+        {
+          "id": 2,
+          "label": "HLS",
+          "description": "",
+          "selected": 0
+        },
+        {
+          "id": 3,
+          "label": "HLS2",
+          "description": "",
+          "selected": 0
+        },
+        {
+          "id": 4,
+          "label": "HLS4",
+          "description": "",
+          "selected": 1
+        }
+      ],
+      "label": "Тип потока"
+    }
+  }
+}

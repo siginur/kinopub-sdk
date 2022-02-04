@@ -22,5 +22,25 @@ class KPEpisodeTests: XCTestCase {
         XCTAssertEqual(decoded, source)
         XCTAssertTrue(decoded == source)
     }
+    
+    func testJsonRepresentable() throws {
+        guard let url = Bundle.module.url(forResource: "KPEpisode-1", withExtension: "json", subdirectory: "json"),
+              let json = try JSONSerialization.jsonObject(with: Data(contentsOf: url), options: []) as? KPJson
+        else {
+            XCTFail("Wrong resource")
+            return
+        }
+        var episode = try KPEpisode(json: json)
+        XCTAssertTrue(episode.updated != nil, "Wrong parsing")
+        
+        guard let url = Bundle.module.url(forResource: "KPEpisode-2", withExtension: "json", subdirectory: "json"),
+              let json = try JSONSerialization.jsonObject(with: Data(contentsOf: url), options: []) as? KPJson
+        else {
+            XCTFail("Wrong resource")
+            return
+        }
+        episode = try KPEpisode(json: json)
+        XCTAssertTrue(episode.seasonNumber != nil, "Wrong parsing")
+    }
 
 }

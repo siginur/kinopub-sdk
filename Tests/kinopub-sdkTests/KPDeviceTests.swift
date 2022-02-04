@@ -32,5 +32,16 @@ class KPDeviceTests: XCTestCase {
         XCTAssertEqual(decoded, source)
         XCTAssertTrue(decoded == source)
     }
+    
+    func testJsonRepresentable() throws {
+        guard let url = Bundle.module.url(forResource: "KPDevice", withExtension: "json", subdirectory: "json"),
+              let json = try JSONSerialization.jsonObject(with: Data(contentsOf: url), options: []) as? KPJson
+        else {
+            XCTFail("Wrong resource")
+            return
+        }
+        
+        XCTAssertNoThrow(try KPDevice(json: json), "Unable to parse device")
+    }
 
 }

@@ -1,0 +1,614 @@
+{
+  "id": 12076,
+  "title": "Пространство / The Expanse",
+  "type": "serial",
+  "seasons": [
+    {
+      "id": 2170,
+      "number": 1,
+      "watched": 10,
+      "status": 1,
+      "episodes": [
+        {
+          "id": 162259,
+          "number": 1,
+          "title": "Дульсинея / Dulcinea",
+          "duration": 2721,
+          "time": 2696,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 164419,
+          "number": 2,
+          "title": "Великая пустота / The Big Empty",
+          "duration": 2595,
+          "time": 2591,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 164935,
+          "number": 3,
+          "title": "Не забудем \"Кент\" / Remember the Cant",
+          "duration": 2595,
+          "time": 2591,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 166426,
+          "number": 4,
+          "title": "Ближний бой / CQB",
+          "duration": 2565,
+          "time": 2564,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 166900,
+          "number": 5,
+          "title": "Назад к мяснику / Back to the Butcher",
+          "duration": 2595,
+          "time": 2591,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 168397,
+          "number": 6,
+          "title": "На дне / Retrofit",
+          "duration": 2594,
+          "time": 2591,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 171058,
+          "number": 7,
+          "title": "Ветряные мельницы / Windmills",
+          "duration": 2565,
+          "time": 2563,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 171847,
+          "number": 8,
+          "title": "Трофей / Salvage",
+          "duration": 2596,
+          "time": 2591,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 172918,
+          "number": 9,
+          "title": "Критическая масса / Critical Mass",
+          "duration": 2373,
+          "time": 2437,
+          "status": 1,
+          "updated": 1507043513
+        },
+        {
+          "id": 831547,
+          "number": 10,
+          "title": "Пробуждение Левиафана / Leviathan Wakes",
+          "duration": 2593,
+          "time": 2450,
+          "status": 1,
+          "updated": 1638770551
+        }
+      ]
+    },
+    {
+      "id": 5379,
+      "number": 2,
+      "watched": 13,
+      "status": 1,
+      "episodes": [
+        {
+          "id": 320386,
+          "number": 1,
+          "title": "Сейф / Safe",
+          "duration": 2972,
+          "time": 2616,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 320884,
+          "number": 2,
+          "title": "Двери и углы / Doors & Corners",
+          "duration": 2689,
+          "time": 2543,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 323905,
+          "number": 3,
+          "title": "Помехи / Static",
+          "duration": 2583,
+          "time": 2446,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 327385,
+          "number": 4,
+          "title": "В добрый путь / Godspeed",
+          "duration": 2687,
+          "time": 2549,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 331429,
+          "number": 5,
+          "title": "Дом / Home",
+          "duration": 2737,
+          "time": 2596,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 334294,
+          "number": 6,
+          "title": "Смена парадигмы / Paradigm Shift",
+          "duration": 2661,
+          "time": 2524,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 336190,
+          "number": 7,
+          "title": "Седьмой человек / The Seventh Man",
+          "duration": 2733,
+          "time": 2677,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 340312,
+          "number": 8,
+          "title": "Погребальный костёр / Pyre",
+          "duration": 2660,
+          "time": 2665,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 341431,
+          "number": 9,
+          "title": "Плачущий лунатик / The Weeping Somnambulist",
+          "duration": 2541,
+          "time": 2546,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 343540,
+          "number": 10,
+          "title": "Каскадный эффект / Cascade",
+          "duration": 2538,
+          "time": 2544,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 346090,
+          "number": 11,
+          "title": "Здесь обитают драконы / Here There Be Dragons",
+          "duration": 2628,
+          "time": 2634,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 348190,
+          "number": 12,
+          "title": "Чудовище и ракета / The Monster and the Rocket",
+          "duration": 2671,
+          "time": 2677,
+          "status": 1,
+          "updated": 1507043512
+        },
+        {
+          "id": 350467,
+          "number": 13,
+          "title": "Война Калибана / Caliban's War",
+          "duration": 2576,
+          "time": 0,
+          "status": 1,
+          "updated": 1507128174
+        }
+      ]
+    },
+    {
+      "id": 8295,
+      "number": 3,
+      "watched": 13,
+      "status": 1,
+      "episodes": [
+        {
+          "id": 465766,
+          "number": 1,
+          "title": "Бей или беги / Fight or Flight",
+          "duration": 2630,
+          "time": 2571,
+          "status": 1,
+          "updated": 1532870828
+        },
+        {
+          "id": 467638,
+          "number": 2,
+          "title": "Свой-чужой / IFF",
+          "duration": 2558,
+          "time": 2523,
+          "status": 1,
+          "updated": 1532873359
+        },
+        {
+          "id": 469366,
+          "number": 3,
+          "title": "Гарантированное уничтожение / Assured Destruction",
+          "duration": 2665,
+          "time": 2621,
+          "status": 1,
+          "updated": 1532893145
+        },
+        {
+          "id": 471334,
+          "number": 4,
+          "title": "Перезагрузка / Reload",
+          "duration": 2668,
+          "time": 2624,
+          "status": 1,
+          "updated": 1532896911
+        },
+        {
+          "id": 473695,
+          "number": 5,
+          "title": "Тройная точка / Triple Point",
+          "duration": 2589,
+          "time": 2520,
+          "status": 1,
+          "updated": 1533497071
+        },
+        {
+          "id": 476599,
+          "number": 6,
+          "title": "Жертвоприношение / Immolation",
+          "duration": 2632,
+          "time": 2641,
+          "status": 1,
+          "updated": 1533500588
+        },
+        {
+          "id": 485137,
+          "number": 7,
+          "title": "Орбитальные маневры / Delta-V",
+          "duration": 2675,
+          "time": 2610,
+          "status": 1,
+          "updated": 1533503207
+        },
+        {
+          "id": 489616,
+          "number": 8,
+          "title": "Оно посылает сигнал / It Reaches Out",
+          "duration": 2591,
+          "time": 2510,
+          "status": 1,
+          "updated": 1533505962
+        },
+        {
+          "id": 494293,
+          "number": 9,
+          "title": "Непреклонность / Intransigence",
+          "duration": 2600,
+          "time": 2475,
+          "status": 1,
+          "updated": 1533583293
+        },
+        {
+          "id": 495238,
+          "number": 10,
+          "title": "Небо в одуванчиках / Dandelion Sky",
+          "duration": 2536,
+          "time": 2520,
+          "status": 1,
+          "updated": 1533586461
+        },
+        {
+          "id": 498289,
+          "number": 11,
+          "title": "Павший мир / Fallen World",
+          "duration": 2671,
+          "time": 2562,
+          "status": 1,
+          "updated": 1533890635
+        },
+        {
+          "id": 501943,
+          "number": 12,
+          "title": "Объединение / Congregation",
+          "duration": 2533,
+          "time": 2487,
+          "status": 1,
+          "updated": 1533942320
+        },
+        {
+          "id": 501946,
+          "number": 13,
+          "title": "Врата Абаддона / Abaddon's Gate",
+          "duration": 2499,
+          "time": 2427,
+          "status": 1,
+          "updated": 1534099080
+        }
+      ]
+    },
+    {
+      "id": 22999,
+      "number": 4,
+      "watched": 10,
+      "status": 1,
+      "episodes": [
+        {
+          "id": 713833,
+          "number": 1,
+          "title": "Новая Терра / New Terra",
+          "duration": 2957,
+          "time": 2842,
+          "status": 1,
+          "updated": 1612982339
+        },
+        {
+          "id": 714364,
+          "number": 2,
+          "title": "Сброшенный груз / Jetsam",
+          "duration": 2904,
+          "time": 2700,
+          "status": 1,
+          "updated": 1579272571
+        },
+        {
+          "id": 714367,
+          "number": 3,
+          "title": "Движение по разломам / Subduction",
+          "duration": 2765,
+          "time": 2610,
+          "status": 1,
+          "updated": 1579275340
+        },
+        {
+          "id": 714370,
+          "number": 4,
+          "title": "Регрессия / Retrograde",
+          "duration": 2640,
+          "time": 2430,
+          "status": 1,
+          "updated": 1579278235
+        },
+        {
+          "id": 714373,
+          "number": 5,
+          "title": "Угнетатель / Oppressor",
+          "duration": 2728,
+          "time": 2520,
+          "status": 1,
+          "updated": 1579281574
+        },
+        {
+          "id": 714376,
+          "number": 6,
+          "title": "Смещение / Displacement",
+          "duration": 2913,
+          "time": 2790,
+          "status": 1,
+          "updated": 1579284773
+        },
+        {
+          "id": 714379,
+          "number": 7,
+          "title": "Выстрел во тьме / A Shot in the Dark",
+          "duration": 2666,
+          "time": 2520,
+          "status": 1,
+          "updated": 1579287328
+        },
+        {
+          "id": 714382,
+          "number": 8,
+          "title": "Одноглазый / The One-Eyed Man",
+          "duration": 3155,
+          "time": 2970,
+          "status": 1,
+          "updated": 1579290341
+        },
+        {
+          "id": 714385,
+          "number": 9,
+          "title": "Столетие / Saeculum",
+          "duration": 2595,
+          "time": 2430,
+          "status": 1,
+          "updated": 1579292839
+        },
+        {
+          "id": 714388,
+          "number": 10,
+          "title": "Пожар Сиболы / Cibola Burn",
+          "duration": 2915,
+          "time": 2915,
+          "status": 1,
+          "updated": 1579295723
+        }
+      ]
+    },
+    {
+      "id": 27619,
+      "number": 5,
+      "watched": 10,
+      "status": 1,
+      "episodes": [
+        {
+          "id": 780904,
+          "number": 1,
+          "title": "Исход / Exodus",
+          "duration": 3100,
+          "time": 3100,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 781153,
+          "number": 2,
+          "title": "Круговорот / Churn",
+          "duration": 3144,
+          "time": 3144,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 781330,
+          "number": 3,
+          "title": "Мать / Mother",
+          "duration": 3118,
+          "time": 3118,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 782176,
+          "number": 4,
+          "title": "Битва при Гавгамелах / Gaugamela",
+          "duration": 2737,
+          "time": 2737,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 783076,
+          "number": 5,
+          "title": "Катастрофа / Down and Out",
+          "duration": 2945,
+          "time": 2945,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 783703,
+          "number": 6,
+          "title": "Племена / Tribes",
+          "duration": 3068,
+          "time": 3068,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 785131,
+          "number": 7,
+          "title": "Прощание / Oyedeng",
+          "duration": 2860,
+          "time": 2860,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 786415,
+          "number": 8,
+          "title": "Глубокий вакуум / Hard Vacuum",
+          "duration": 3215,
+          "time": 3215,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 787090,
+          "number": 9,
+          "title": "Виннипесоки / Winnipesaukee",
+          "duration": 3111,
+          "time": 3111,
+          "status": 1,
+          "updated": 1613145593
+        },
+        {
+          "id": 787960,
+          "number": 10,
+          "title": "Игры Немезиды / Nemesis Games",
+          "duration": 3372,
+          "time": 3372,
+          "status": 1,
+          "updated": 1613145593
+        }
+      ]
+    },
+    {
+      "id": 33397,
+      "number": 6,
+      "watched": 0,
+      "status": -1,
+      "episodes": [
+        {
+          "id": 838714,
+          "number": 1,
+          "title": "Странные псы / Strange Dogs",
+          "duration": 2826,
+          "time": 0,
+          "status": -1,
+          "updated": null
+        },
+        {
+          "id": 839500,
+          "number": 2,
+          "title": "Лазурный дракон / Azure Dragon",
+          "duration": 2710,
+          "time": 0,
+          "status": -1,
+          "updated": null
+        },
+        {
+          "id": 840526,
+          "number": 3,
+          "title": "Проекция силы / Force Projection",
+          "duration": 2683,
+          "time": 0,
+          "status": -1,
+          "updated": null
+        },
+        {
+          "id": 841588,
+          "number": 4,
+          "title": "Редут / Redoubt",
+          "duration": 2831,
+          "time": 0,
+          "status": -1,
+          "updated": null
+        },
+        {
+          "id": 842698,
+          "number": 5,
+          "title": "Почему мы сражаемся / Why We Fight",
+          "duration": 2888,
+          "time": 0,
+          "status": -1,
+          "updated": null
+        },
+        {
+          "id": 843796,
+          "number": 6,
+          "title": "Пепел Вавилона / Babylon's Ashes",
+          "duration": 3817,
+          "time": 0,
+          "status": -1,
+          "updated": null
+        }
+      ]
+    }
+  ],
+  "watched": 5
+}

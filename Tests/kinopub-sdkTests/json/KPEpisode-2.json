@@ -1,0 +1,201 @@
+{
+  "id": 162259,
+  "number": 1,
+  "snumber": 1,
+  "thumbnail": "https://cdn.service-kp.com/thumb/2/d6/10lg5gbxyb58jeWTK/1361000/480x270.jpg",
+  "title": "Дульсинея",
+  "tracks": 6,
+  "duration": 2721,
+  "ac3": 1,
+  "audios": [
+    {
+      "id": 2269954,
+      "index": 1,
+      "codec": "aac",
+      "channels": 6,
+      "lang": "rus",
+      "type": {
+        "id": 2,
+        "title": "Многоголосый",
+        "short_title": "MVO"
+      },
+      "author": {
+        "id": 15,
+        "title": "Jaskier",
+        "short_title": null
+      }
+    },
+    {
+      "id": 2269957,
+      "index": 2,
+      "codec": "aac",
+      "channels": 6,
+      "lang": "rus",
+      "type": {
+        "id": 2,
+        "title": "Многоголосый",
+        "short_title": "MVO"
+      },
+      "author": {
+        "id": 11,
+        "title": "AlexFilm",
+        "short_title": null
+      }
+    },
+    {
+      "id": 2269960,
+      "index": 3,
+      "codec": "aac",
+      "channels": 6,
+      "lang": "rus",
+      "type": {
+        "id": 2,
+        "title": "Многоголосый",
+        "short_title": "MVO"
+      },
+      "author": {
+        "id": 10,
+        "title": "LostFilm",
+        "short_title": null
+      }
+    },
+    {
+      "id": 2269963,
+      "index": 4,
+      "codec": "aac",
+      "channels": 6,
+      "lang": "rus",
+      "type": {
+        "id": 2,
+        "title": "Многоголосый",
+        "short_title": "MVO"
+      },
+      "author": {
+        "id": 1621,
+        "title": "TVShows",
+        "short_title": ""
+      }
+    },
+    {
+      "id": 2269966,
+      "index": 5,
+      "codec": "aac",
+      "channels": 6,
+      "lang": "eng",
+      "type": {
+        "id": 6,
+        "title": "Оригинал",
+        "short_title": "Orig"
+      },
+      "author": null
+    },
+    {
+      "id": 2269969,
+      "index": 6,
+      "codec": "ac3",
+      "channels": 6,
+      "lang": "rus",
+      "type": {
+        "id": 2,
+        "title": "Многоголосый",
+        "short_title": "MVO"
+      },
+      "author": {
+        "id": 15,
+        "title": "Jaskier",
+        "short_title": null
+      }
+    }
+  ],
+  "subtitles": [
+    {
+      "lang": "eng",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/5/14/680257.srt",
+      "url": "https://hulucdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/subtitles//5/14/680257.srt"
+    },
+    {
+      "lang": "eng",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/4/47/680287.srt",
+      "url": "https://hulucdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/subtitles//4/47/680287.srt"
+    },
+    {
+      "lang": "rus",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/e/b1/680317.srt",
+      "url": "https://hulucdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/subtitles//e/b1/680317.srt"
+    },
+    {
+      "lang": "ger",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/e/9e/680347.srt",
+      "url": "https://hulucdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/subtitles//e/9e/680347.srt"
+    },
+    {
+      "lang": "fre",
+      "shift": 0,
+      "embed": false,
+      "forced": false,
+      "file": "/c/c3/680377.srt",
+      "url": "https://hulucdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/subtitles//c/c3/680377.srt"
+    }
+  ],
+  "files": [
+    {
+      "codec": "h264",
+      "w": 1920,
+      "h": 1080,
+      "quality": "1080p",
+      "quality_id": 3,
+      "file": "/f/22/1qURZkZBNWm0YUuyJ.mp4",
+      "url": {
+        "http": "https://hulucdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/f/22/1qURZkZBNWm0YUuyJ.mp4?loc=nl",
+        "hls": "https://hulucdn.net/hls/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/f/22/1qURZkZBNWm0YUuyJ.mp4/master-v1a1.m3u8?loc=nl",
+        "hls4": "https://hulucdn.net/hls4/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/162259.m3u8?loc=nl",
+        "hls2": "https://hulucdn.net/hls2/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/162259.m3u8?loc=nl"
+      }
+    },
+    {
+      "codec": "h264",
+      "w": 1280,
+      "h": 720,
+      "quality": "720p",
+      "quality_id": 2,
+      "file": "/8/e7/FbhpAepEQMI4n5iFU.mp4",
+      "url": {
+        "http": "https://hulucdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/8/e7/FbhpAepEQMI4n5iFU.mp4?loc=nl",
+        "hls": "https://hulucdn.net/hls/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/8/e7/FbhpAepEQMI4n5iFU.mp4/master-v1a1.m3u8?loc=nl",
+        "hls4": "https://hulucdn.net/hls4/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/162259.m3u8?loc=nl",
+        "hls2": "https://hulucdn.net/hls2/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/162259.m3u8?loc=nl"
+      }
+    },
+    {
+      "codec": "h264",
+      "w": 720,
+      "h": 406,
+      "quality": "480p",
+      "quality_id": 1,
+      "file": "/2/d6/10lg5gbxyb58jeWTK.mp4",
+      "url": {
+        "http": "https://hulucdn.net/pd/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/2/d6/10lg5gbxyb58jeWTK.mp4?loc=nl",
+        "hls": "https://hulucdn.net/hls/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/2/d6/10lg5gbxyb58jeWTK.mp4/master-v1a1.m3u8?loc=nl",
+        "hls4": "https://hulucdn.net/hls4/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/162259.m3u8?loc=nl",
+        "hls2": "https://hulucdn.net/hls2/aWQ9MTA4Nzk2OzM1NzczMzM5OTM7MTU4MzQ5MDc7MTY0Mzc3Njc0NSZoPTZsOENJTXlnQ3hQVVpOLUhzamVFTncmZT0xNjQzODYzMTQ1/162259.m3u8?loc=nl"
+      }
+    }
+  ],
+  "watched": 1,
+  "watching": {
+    "status": 1,
+    "time": 2696
+  }
+}

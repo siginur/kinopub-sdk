@@ -1,0 +1,43 @@
+{
+  "configurations" : [
+    {
+      "id" : "8EDFA1B3-A619-439E-AD24-9007CC88FA84",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "CouldBeInWatchListTests",
+        "KPContentTests\/testCodable()",
+        "KPDeviceTests\/testCodable()",
+        "KPEpisodeTests\/testCodable()",
+        "KPMediaLinksTests\/testCodable()",
+        "KPMetadataTests\/testCodable()",
+        "KPMovieMetadataTests\/testCodable()",
+        "KPMovieTests\/testCodable()",
+        "KPPosterTests\/testCodable()",
+        "KPSeasonTests\/testCodable()",
+        "KPSerialMetadataTests\/testCodable()",
+        "KPSerialTests\/testCodable()",
+        "KPSessionTests",
+        "KPUserTests\/testCodable()",
+        "KPWatchingMovieTests\/testCodable()",
+        "KPWatchingSerialTests\/testCodable()",
+        "KinoPubSDKTests"
+      ],
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "kinopub-sdkTests",
+        "name" : "kinopub-sdkTests"
+      }
+    }
+  ],
+  "version" : 1
+}

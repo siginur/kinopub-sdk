@@ -31,6 +31,7 @@ let package = Package(
             dependencies: ["SMStorage"]),
         .testTarget(
             name: "kinopub-sdkTests",
-            dependencies: ["kinopub-sdk"]),
+            dependencies: ["kinopub-sdk"],
+            resources: [.copy("json")]),
     ]
 )

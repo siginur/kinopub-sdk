@@ -1,0 +1,98 @@
+{
+  "id": 2170,
+  "number": 1,
+  "watched": 10,
+  "status": 1,
+  "episodes": [
+    {
+      "id": 162259,
+      "number": 1,
+      "title": "Дульсинея / Dulcinea",
+      "duration": 2721,
+      "time": 2696,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 164419,
+      "number": 2,
+      "title": "Великая пустота / The Big Empty",
+      "duration": 2595,
+      "time": 2591,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 164935,
+      "number": 3,
+      "title": "Не забудем \"Кент\" / Remember the Cant",
+      "duration": 2595,
+      "time": 2591,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 166426,
+      "number": 4,
+      "title": "Ближний бой / CQB",
+      "duration": 2565,
+      "time": 2564,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 166900,
+      "number": 5,
+      "title": "Назад к мяснику / Back to the Butcher",
+      "duration": 2595,
+      "time": 2591,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 168397,
+      "number": 6,
+      "title": "На дне / Retrofit",
+      "duration": 2594,
+      "time": 2591,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 171058,
+      "number": 7,
+      "title": "Ветряные мельницы / Windmills",
+      "duration": 2565,
+      "time": 2563,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 171847,
+      "number": 8,
+      "title": "Трофей / Salvage",
+      "duration": 2596,
+      "time": 2591,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 172918,
+      "number": 9,
+      "title": "Критическая масса / Critical Mass",
+      "duration": 2373,
+      "time": 2437,
+      "status": 1,
+      "updated": 1507043513
+    },
+    {
+      "id": 831547,
+      "number": 10,
+      "title": "Пробуждение Левиафана / Leviathan Wakes",
+      "duration": 2593,
+      "time": 2450,
+      "status": 1,
+      "updated": 1638770551
+    }
+  ]
+}

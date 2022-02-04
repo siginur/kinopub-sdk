@@ -21,5 +21,25 @@ class KPPosterTests: XCTestCase {
         XCTAssertEqual(decoded, source)
         XCTAssertTrue(decoded == source)
     }
+    
+    func testJsonRepresentable() throws {
+        guard let url = Bundle.module.url(forResource: "KPPoster-1", withExtension: "json", subdirectory: "json"),
+              let json = try JSONSerialization.jsonObject(with: Data(contentsOf: url), options: []) as? KPJson
+        else {
+            XCTFail("Wrong resource")
+            return
+        }
+        XCTAssertNoThrow(try KPPoster(json: json), "Unable to parse poster")
+        
+        
+        guard let url = Bundle.module.url(forResource: "KPPoster-2", withExtension: "json", subdirectory: "json"),
+              let json = try JSONSerialization.jsonObject(with: Data(contentsOf: url), options: []) as? KPJson
+        else {
+            XCTFail("Wrong resource")
+            return
+        }
+        let poster = try KPPoster(json: json)
+        XCTAssertTrue(poster.wide != nil, "Wrong parsing")
+    }
 
 }

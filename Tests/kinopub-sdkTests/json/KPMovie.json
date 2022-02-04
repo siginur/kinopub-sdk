@@ -1,0 +1,178 @@
+{
+  "id": 60661,
+  "type": "movie",
+  "subtype": "",
+  "title": "Выход / Eksiteu",
+  "year": 2019,
+  "cast": "Чо Джон-сок, Юна, Ко Ду-щим, Пак Ин-хван, Ким Джи-ён, Кан Ги-ён, Ким Джон-гу, Ким Бён-сун, Хван Хё-ын, Ли Бон-нён",
+  "director": "Ли Сан-гын",
+  "genres": [
+    {
+      "id": 1,
+      "title": "Комедия"
+    },
+    {
+      "id": 2,
+      "title": "Боевик"
+    }
+  ],
+  "countries": [
+    {
+      "id": 34,
+      "title": "Южная Корея"
+    }
+  ],
+  "voice": null,
+  "duration": {
+    "average": 6210,
+    "total": 6210
+  },
+  "ac3": 1,
+  "langs": 3,
+  "quality": 1080,
+  "plot": "30-летний неудачник Ён-нам никак не может устроиться на нормальную работу, а единственное, в чем он преуспел - это скалолазание. Жизнь бедолаги похожа на катастрофу: приходится жить с родителями, отбиваться от постоянных нападок старшей сестры, и даже малолетний племянник его стыдится. Большой банкет по поводу 70-летия матери Ён-нама по странному стечению обстоятельств проходит на одном из верхних этажей здания, где работает И-джу, его безответная любовь ещё с колледжа. Когда праздник уже завершился, неугомонные родственники никак не хотят расходиться, а сам парень уже готов сгореть от стыда, по городу начинает распространяться ядовитый газ. Единственный способ не отравиться - попасть на крышу, но дверь заперта, и теперь бесполезные, по мнению семейства, навыки Ён-нама могут спасти им всем жизнь.",
+  "tracklist": [],
+  "imdb": 10648440,
+  "imdb_rating": 7,
+  "imdb_votes": 5504,
+  "kinopoisk": 1118187,
+  "kinopoisk_rating": 7.1,
+  "kinopoisk_votes": 7757,
+  "rating": 41,
+  "rating_votes": 61,
+  "rating_percentage": 83,
+  "views": 5548,
+  "comments": 11,
+  "posters": {
+    "small": "https://cdn.service-kp.com/poster/item/small/60661.jpg",
+    "medium": "https://cdn.service-kp.com/poster/item/medium/60661.jpg",
+    "big": "https://cdn.service-kp.com/poster/item/big/60661.jpg",
+    "wide": "https://cdn.service-kp.com/poster/item/wide/60661.jpg"
+  },
+  "trailer": {
+    "id": 60661,
+    "file": "/trailers/4/62/60661.mp4",
+    "url": "https://amzncdn.net/pd/aWQ9MTA4Nzk2OzI5Njc4OTY2MTg7MTU4MzQ5MDc7MTY0Mzk1MTAxMyZoPWxFaFN6eEl0aUhfZEduam9kNk4tSHcmZT0xNjQ0MDM3NDEz/trailers/4/62/60661.mp4?loc=nl"
+  },
+  "finished": false,
+  "advert": false,
+  "poor_quality": false,
+  "created_at": 1579857069,
+  "updated_at": 1620139913,
+  "bookmarks": [
+    {
+      "id": 153562,
+      "title": "Watch it later"
+    }
+  ],
+  "videos": [
+    {
+      "id": 723637,
+      "number": 1,
+      "snumber": 0,
+      "thumbnail": "https://cdn.service-kp.com/thumb/6/26/iSaRxJNArv9hs7q56/3105000/480x270.jpg",
+      "title": "",
+      "tracks": 3,
+      "duration": 6210,
+      "ac3": 1,
+      "audios": [
+        {
+          "id": 2125204,
+          "index": 1,
+          "codec": "aac",
+          "channels": 6,
+          "lang": "rus",
+          "type": {
+            "id": 1,
+            "title": "Дубляж",
+            "short_title": "DUB"
+          },
+          "author": {
+            "id": 37,
+            "title": "iTunes",
+            "short_title": ""
+          }
+        },
+        {
+          "id": 2125207,
+          "index": 2,
+          "codec": "aac",
+          "channels": 6,
+          "lang": "kor",
+          "type": {
+            "id": 6,
+            "title": "Оригинал",
+            "short_title": "Orig"
+          },
+          "author": null
+        },
+        {
+          "id": 2125210,
+          "index": 3,
+          "codec": "ac3",
+          "channels": 6,
+          "lang": "rus",
+          "type": {
+            "id": 1,
+            "title": "Дубляж",
+            "short_title": "DUB"
+          },
+          "author": {
+            "id": 37,
+            "title": "iTunes",
+            "short_title": ""
+          }
+        }
+      ],
+      "subtitles": [
+        {
+          "lang": "rus",
+          "shift": 0,
+          "embed": false,
+          "forced": false,
+          "file": "/1/dc/544447.srt",
+          "url": "https://amzncdn.net/pd/aWQ9MTA4Nzk2OzI5Njc4OTY2MTg7MTU4MzQ5MDc7MTY0Mzk1MTAxMyZoPWxFaFN6eEl0aUhfZEduam9kNk4tSHcmZT0xNjQ0MDM3NDEz/subtitles//1/dc/544447.srt"
+        },
+        {
+          "lang": "eng",
+          "shift": 0,
+          "embed": false,
+          "forced": false,
+          "file": "/6/b6/544450.srt",
+          "url": "https://amzncdn.net/pd/aWQ9MTA4Nzk2OzI5Njc4OTY2MTg7MTU4MzQ5MDc7MTY0Mzk1MTAxMyZoPWxFaFN6eEl0aUhfZEduam9kNk4tSHcmZT0xNjQ0MDM3NDEz/subtitles//6/b6/544450.srt"
+        }
+      ],
+      "files": [
+        {
+          "codec": "h264",
+          "w": 1920,
+          "h": 800,
+          "quality": "1080p",
+          "quality_id": 3,
+          "file": "/6/40/kSXLI9P3sbQVUD2pZ.mp4"
+        },
+        {
+          "codec": "h264",
+          "w": 1280,
+          "h": 534,
+          "quality": "720p",
+          "quality_id": 2,
+          "file": "/d/ee/QeIbgiWJy7X2BnFCu.mp4"
+        },
+        {
+          "codec": "h264",
+          "w": 720,
+          "h": 300,
+          "quality": "480p",
+          "quality_id": 1,
+          "file": "/6/26/iSaRxJNArv9hs7q56.mp4"
+        }
+      ],
+      "watched": -1,
+      "watching": {
+        "status": -1,
+        "time": 0
+      }
+    }
+  ]
+}
