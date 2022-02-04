@@ -19,7 +19,7 @@ public class KPWatchingSerial: KPWatchingMovie, CouldBeInWatchList {
         try super.init(json: json)
     }
     
-    public init(id: Int, title: String, type: String, subtype: String, poster: Poster, watched: Int, new: Int) {
+    public init(id: Int, title: String, type: String, subtype: String, poster: KPPoster, watched: Int, new: Int) {
         self.watched = watched
         self.new = new
         super.init(id: id, title: title, type: type, subtype: subtype, poster: poster)

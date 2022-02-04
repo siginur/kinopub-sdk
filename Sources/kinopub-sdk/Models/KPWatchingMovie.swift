@@ -7,10 +7,10 @@
 
 import Foundation
 
-public class KPWatchingMovie: KPContent {
+public class KPWatchingMovie: KPContentMetadata {
     
     public let subtype: String
-    public let poster: Poster
+    public let poster: KPPoster
     
     public required init(json: KPJson) throws {
         self.subtype = try json.parse(key: "subtype")
@@ -18,7 +18,7 @@ public class KPWatchingMovie: KPContent {
         try super.init(json: json)
     }
     
-    public init(id: Int, title: String, type: String, subtype: String, poster: Poster) {
+    public init(id: Int, title: String, type: String, subtype: String, poster: KPPoster) {
         self.subtype = subtype
         self.poster = poster
         super.init(id: id, title: title, type: type)
@@ -31,7 +31,7 @@ public class KPWatchingMovie: KPContent {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Key.self)
         self.subtype = try container.decode(String.self, forKey: .subtype)
-        self.poster = try container.decode(Poster.self, forKey: .poster)
+        self.poster = try container.decode(KPPoster.self, forKey: .poster)
         try super.init(from: decoder)
     }
     
@@ -43,37 +43,9 @@ public class KPWatchingMovie: KPContent {
     }
     
     public static func == (lhs: KPWatchingMovie, rhs: KPWatchingMovie) -> Bool {
-        return lhs as KPContent == rhs as KPContent &&
+        return lhs as KPContentMetadata == rhs as KPContentMetadata &&
         lhs.subtype == rhs.subtype &&
         lhs.poster == rhs.poster
-    }
-    
-}
-
-public extension KPWatchingMovie {
-
-    class Poster: Codable, Equatable, KPJsonRepresentable {
-        public let small: URL
-        public let medium: URL
-        public let big: URL
-        
-        public required init(json: KPJson) throws {
-            self.small = try json.parse(key: "small")
-            self.medium = try json.parse(key: "medium")
-            self.big = try json.parse(key: "big")
-        }
-        
-        public init(small: URL, medium: URL, big: URL) {
-            self.small = small
-            self.medium = medium
-            self.big = big
-        }
-        
-        public static func == (lhs: KPWatchingMovie.Poster, rhs: KPWatchingMovie.Poster) -> Bool {
-            return lhs.small == rhs.small &&
-            lhs.medium == rhs.medium &&
-            lhs.big == rhs.big
-        }
     }
     
 }

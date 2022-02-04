@@ -8,6 +8,7 @@
 import Foundation
 
 public class KPUser: Codable, Equatable, Identifiable, KPJsonRepresentable {
+    
     public let username: String
     public let name: String
     public let avatar: URL
@@ -37,4 +38,5 @@ public class KPUser: Codable, Equatable, Identifiable, KPJsonRepresentable {
         lhs.registrationDate == rhs.registrationDate &&
         lhs.subscriptionExpiryDate == rhs.subscriptionExpiryDate
     }
+    
 }

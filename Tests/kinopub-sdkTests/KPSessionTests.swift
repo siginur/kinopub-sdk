@@ -120,6 +120,77 @@ class KPSessionTests: XCTestCase {
         wait(for: [expectation], timeout: defaultWaitTime)
     }
     
+    func testGetContentMetadata() throws {
+        let expectationSerial = XCTestExpectation(description: "Get serial content metadata")
+        KPSession.current.getContentMetadata(byId: 15396) { result in
+            do {
+                let content = try result.get()
+                guard let serial = content as? KPSerialMetadata else {
+                    XCTFail("Unable to convert content to serial metadata")
+                    return
+                }
+                XCTAssertTrue(serial.seasons.count > 0, "No seasons in serial content metadata")
+                for season in serial.seasons {
+                    XCTAssertTrue(season.episodes.count > 0, "No episodes in serial season content metadata")
+                }
+            } catch {
+                XCTFail("Unable to get serial content metadata: \(error)")
+            }
+            expectationSerial.fulfill()
+        }
+        
+        let expectationMovie = XCTestExpectation(description: "Get movie content metadata")
+        KPSession.current.getContentMetadata(byId: 76429) { result in
+            do {
+                let content = try result.get()
+                guard let movie = content as? KPMovieMetadata else {
+                    XCTFail("Unable to convert content to movie metadata")
+                    return
+                }
+                XCTAssertTrue(movie.videos.count > 0, "No videos in movie content metadata")
+            } catch {
+                XCTFail("Unable to get movie content metadata: \(error)")
+            }
+            expectationMovie.fulfill()
+        }
+        
+        wait(for: [expectationSerial, expectationMovie], timeout: defaultWaitTime * 2)
+    }
+    
+    func testGetSerialMetadata() throws {
+        let expectation = XCTestExpectation(description: "Get serial metadata")
+        KPSession.current.getSerialMetadata(byId: 15396) { result in
+            do {
+                let serial = try result.get()
+                XCTAssertTrue(serial.seasons.count > 0, "No seasons in serial metadata")
+                for season in serial.seasons {
+                    XCTAssertTrue(season.episodes.count > 0, "No episodes in serial metadata season")
+                }
+            } catch {
+                XCTFail("Unable to get serial metadata: \(error)")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: defaultWaitTime)
+    }
+    
+    func testGetMovieMetadata() throws {
+        let expectation = XCTestExpectation(description: "Get movie metadata")
+        
+        KPSession.current.getMovieMetadata(byId: 76429) { result in
+            do {
+                let movie = try result.get()
+                XCTAssertTrue(movie.videos.count > 0, "No videos in movie metadata")
+            } catch {
+                XCTFail("Unable to get movie metadata: \(error)")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: defaultWaitTime)
+    }
+    
     func testGetContent() throws {
         let expectationSerial = XCTestExpectation(description: "Get serial content")
         KPSession.current.getContent(byId: 15396) { result in

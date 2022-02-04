@@ -7,11 +7,10 @@
 
 import Foundation
 
-public class KPEpisode: Codable, Equatable, Identifiable {
+public class KPEpisode: Codable, Equatable, Identifiable, KPJsonRepresentable {
     
-    public let contentId: Int
-    public let seasonId: Int?
     public let id: Int
+    public let seasonNumber: Int?
     public let number: Int
     public let title: String
     public let duration: TimeInterval
@@ -19,22 +18,29 @@ public class KPEpisode: Codable, Equatable, Identifiable {
     public let status: Int
     public let updated: Date?
     
-    public required init(contentId: Int, seasonId: Int?, raw: KPJson) throws {
-        self.contentId = contentId
-        self.seasonId = seasonId
-        self.id = try raw.parse(key: "id")
-        self.number = try raw.parse(key: "number")
-        self.title = try raw.parse(key: "title")
-        self.duration = try raw.parse(key: "duration")
-        self.time = try raw.parse(key: "time")
-        self.status = try raw.parse(key: "status")
-        self.updated = try? raw.parse(key: "updated")
+    public required init(json: KPJson) throws {
+        self.id = try json.parse(key: "id")
+        self.seasonNumber = try? json.parse(key: "snumber")
+        self.number = try json.parse(key: "number")
+        self.title = try json.parse(key: "title")
+        self.duration = try json.parse(key: "duration")
+        let watching: KPJson
+        do {
+            // For request: GET /v1/watching?id=12076
+            watching = try json.parse(key: "watching", type: KPJson.self)
+            
+        } catch {
+            // For request: GET /v1/items/12076
+            watching = json
+        }
+        self.time = try watching.parse(key: "time")
+        self.status = try watching.parse(key: "status")
+        self.updated = try? json.parse(key: "updated")
     }
     
-    public init(contentId: Int, seasonId: Int?, id: Int, number: Int, title: String, duration: TimeInterval, time: TimeInterval, status: Int, updated: Date?) {
-        self.contentId = contentId
-        self.seasonId = seasonId
+    public init(id: Int, seasonNumber: Int?, number: Int, title: String, duration: TimeInterval, time: TimeInterval, status: Int, updated: Date?) {
         self.id = id
+        self.seasonNumber = seasonNumber
         self.number = number
         self.title = title
         self.duration = duration
@@ -54,9 +60,8 @@ public class KPEpisode: Codable, Equatable, Identifiable {
     }
     
     public static func == (lhs: KPEpisode, rhs: KPEpisode) -> Bool {
-        return lhs.contentId == rhs.contentId &&
-        lhs.seasonId == rhs.seasonId &&
-        lhs.id == rhs.id &&
+        return lhs.id == rhs.id &&
+        lhs.seasonNumber == rhs.seasonNumber &&
         lhs.number == rhs.number &&
         lhs.title == rhs.title &&
         lhs.duration == rhs.duration &&

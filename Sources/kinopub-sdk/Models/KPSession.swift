@@ -164,8 +164,59 @@ public class KPSession: Codable, Equatable, Identifiable {
         }
     }
     
-    public func getContent(byId id: Int, completionHandler: @escaping (Result<KPContent, KPError>) -> ()) {
+    public func getContentMetadata(byId id: Int, completionHandler: @escaping (Result<KPContentMetadata, KPError>) -> ()) {
         API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/watching", queryParams: ["id": "\(id)"]) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let item: KPJson = try response.json().parse(key: "item")
+                    if try item.parse(key: "type") == "serial" {
+                        completionHandler(.success(try KPSerialMetadata(json: item)))
+                    }
+                    else {
+                        completionHandler(.success(try KPMovieMetadata(json: item)))
+                    }
+                } catch {
+                    completionHandler(.failure(.apiError(.parsingError(error))))
+                }
+            case .failure(let error):
+                completionHandler(.failure(.apiError(error)))
+            }
+        }
+    }
+    
+    public func getSerialMetadata(byId id: Int, completionHandler: @escaping (Result<KPSerialMetadata, KPError>) -> ()) {
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/watching", queryParams: ["id": "\(id)"]) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    completionHandler(.success(try response.decode(key: "item", type: KPSerialMetadata.self)))
+                } catch {
+                    completionHandler(.failure(.apiError(.parsingError(error))))
+                }
+            case .failure(let error):
+                completionHandler(.failure(.apiError(error)))
+            }
+        }
+    }
+    
+    public func getMovieMetadata(byId id: Int, completionHandler: @escaping (Result<KPMovieMetadata, KPError>) -> ()) {
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/watching", queryParams: ["id": "\(id)"]) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    completionHandler(.success(try response.decode(key: "item", type: KPMovieMetadata.self)))
+                } catch {
+                    completionHandler(.failure(.apiError(.parsingError(error))))
+                }
+            case .failure(let error):
+                completionHandler(.failure(.apiError(error)))
+            }
+        }
+    }
+    
+    public func getContent(byId id: Int, completionHandler: @escaping (Result<KPContent, KPError>) -> ()) {
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/\(id)", queryParams: ["nolinks": "1"]) { result in
             switch result {
             case .success(let response):
                 do {
@@ -186,7 +237,7 @@ public class KPSession: Codable, Equatable, Identifiable {
     }
     
     public func getSerial(byId id: Int, completionHandler: @escaping (Result<KPSerial, KPError>) -> ()) {
-        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/watching", queryParams: ["id": "\(id)"]) { result in
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/\(id)", queryParams: ["nolinks": "1"]) { result in
             switch result {
             case .success(let response):
                 do {
@@ -201,7 +252,7 @@ public class KPSession: Codable, Equatable, Identifiable {
     }
     
     public func getMovie(byId id: Int, completionHandler: @escaping (Result<KPMovie, KPError>) -> ()) {
-        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/watching", queryParams: ["id": "\(id)"]) { result in
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/\(id)", queryParams: ["nolinks": "1"]) { result in
             switch result {
             case .success(let response):
                 do {
@@ -300,6 +351,24 @@ public extension KPSession {
     func getWatchlist() async throws -> [KPWatchingSerial] {
         return try await withCheckedThrowingContinuation({ continuation in
             getWatchlist(completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getContentMetadata(byId id: Int) async throws -> KPContentMetadata {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getContentMetadata(byId: id, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getSerialMetadata(byId id: Int) async throws -> KPSerialMetadata {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getSerialMetadata(byId: id, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getMovieMetadata(byId id: Int) async throws -> KPMovieMetadata {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getMovieMetadata(byId: id, completionHandler: continuation.resume(with:))
         })
     }
     

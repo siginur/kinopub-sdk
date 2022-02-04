@@ -19,7 +19,7 @@ final class CouldBeInWatchListTests: XCTestCase {
     func testToggleWatchList() throws {
         let expectation = XCTestExpectation(description: "Toggle serial in watchlist")
         
-        KPSession.current.getSerial(byId: 15109) { result in
+        KPSession.current.getSerialMetadata(byId: 15109) { result in
             do {
                 let serial = try result.get()
                 serial.toggleWatchList(completionHandler: { result in

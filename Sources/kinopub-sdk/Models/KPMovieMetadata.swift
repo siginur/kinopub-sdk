@@ -1,13 +1,13 @@
 //
-//  KPMovie.swift
+//  KPMovieMetadata.swift
 //  
 //
-//  Created by Alexey Siginur on 04/02/2022.
+//  Created by Alexey Siginur on 29/01/2022.
 //
 
 import Foundation
 
-public class KPMovie: KPContent {
+public class KPMovieMetadata: KPContentMetadata {
     public let videos: [KPEpisode]
     
     public required init(json: KPJson) throws {
@@ -15,9 +15,9 @@ public class KPMovie: KPContent {
         try super.init(json: json)
     }
     
-    public init(id: Int, title: String, type: String, year: Int, cast: String, director: String, plot: String, imdb: Int, imdbRating: Double, imdbVotes: Int, kinopoisk: Int, kinopoiskRating: Double, kinopoiskVotes: Int, rating: Int, ratingVotes: Int, ratingPercentage: Int, poster: KPPoster, videos: [KPEpisode]) {
+    public init(id: Int, title: String, type: String, videos: [KPEpisode]) {
         self.videos = videos
-        super.init(id: id, title: title, type: type, year: year, cast: cast, director: director, plot: plot, imdb: imdb, imdbRating: imdbRating, imdbVotes: imdbVotes, kinopoisk: kinopoisk, kinopoiskRating: kinopoiskRating, kinopoiskVotes: kinopoiskVotes, rating: rating, ratingVotes: ratingVotes, ratingPercentage: ratingPercentage, poster: poster)
+        super.init(id: id, title: title, type: type)
     }
     
     private enum Key: CodingKey {
@@ -36,9 +36,8 @@ public class KPMovie: KPContent {
         try super.encode(to: encoder)
     }
     
-    public static func == (lhs: KPMovie, rhs: KPMovie) -> Bool {
-        return lhs as KPContent == rhs as KPContent &&
+    public static func == (lhs: KPMovieMetadata, rhs: KPMovieMetadata) -> Bool {
+        return lhs as KPContentMetadata == rhs as KPContentMetadata &&
         lhs.videos == rhs.videos
     }
-    
 }

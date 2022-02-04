@@ -1,5 +1,5 @@
 //
-//  KPEpisodeTests.swift
+//  KPMetadataTests.swift
 //  
 //
 //  Created by Alexey Siginur on 31/01/2022.
@@ -8,17 +8,17 @@
 import XCTest
 import kinopub_sdk
 
-class KPEpisodeTests: XCTestCase {
+class KPMetadataTests: XCTestCase {
     
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
 
     func testCodable() throws {
-        let source = KPEpisode(id: 2, seasonNumber: 3, number: 4, title: "title", duration: 5, time: 6, status: 7, updated: Date())
+        let source = KPContentMetadata(id: 1, title: "title", type: "type")
         
         let encoded = try encoder.encode(source)
-        let decoded = try decoder.decode(KPEpisode.self, from: encoded)
-
+        let decoded = try decoder.decode(KPContentMetadata.self, from: encoded)
+        
         XCTAssertEqual(decoded, source)
         XCTAssertTrue(decoded == source)
     }

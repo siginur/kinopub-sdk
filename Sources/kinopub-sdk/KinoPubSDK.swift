@@ -110,3 +110,15 @@ public enum AuthenticationStatus {
 }
 
 
+// MARK: - Async/Await wrappers
+
+@available(tvOS 13.0.0, watchOS 6.0, iOS 13.0.0, macOS 10.15.0, *)
+public extension KinoPubSDK {
+    
+    static func registerDevice(clientId: String, clientSecret: String, deviceName: String? = nil) async throws -> AuthenticationStatus  {
+        return try await withCheckedThrowingContinuation({ continuation in
+            registerDevice(clientId: clientId, clientSecret: clientSecret, deviceName: deviceName, updateHandler: continuation.resume(returning:))
+        })
+    }
+    
+}

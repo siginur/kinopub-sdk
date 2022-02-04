@@ -1,14 +1,14 @@
 //
-//  KPSerialTests.swift
+//  KPSerialMetadataTests.swift
 //  
 //
-//  Created by Alexey Siginur on 04/02/2022.
+//  Created by Alexey Siginur on 31/01/2022.
 //
 
 import XCTest
 import kinopub_sdk
 
-class KPSerialTests: XCTestCase {
+class KPSerialMetadataTests: XCTestCase {
     
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
@@ -22,12 +22,10 @@ class KPSerialTests: XCTestCase {
             KPEpisode(id: 25, seasonNumber: 26, number: 27, title: "title4", duration: 28, time: 29, status: 30, updated: Date(timeIntervalSinceNow: 3)),
             KPEpisode(id: 32, seasonNumber: 33, number: 34, title: "title5", duration: 35, time: 36, status: 37, updated: Date(timeIntervalSinceNow: 4))
         ])
-        let poster = KPPoster(small: URL(string: "http://url.com/1")!, medium: URL(string: "http://url.com/2")!, big: URL(string: "http://url.com/3")!, wide: URL(string: "http://url.com/4")!)
-        
-        let source = KPSerial(id: 1, title: "title", type: "type", year: 2, cast: "cast", director: "director", plot: "plot", imdb: 3, imdbRating: 4.5, imdbVotes: 6, kinopoisk: 7, kinopoiskRating: 8.9, kinopoiskVotes: 10, rating: 11, ratingVotes: 12, ratingPercentage: 13, poster: poster, seasons: [season1, season2])
+        let source = KPSerialMetadata(id: 1, title: "title", type: "type", seasons: [season1, season2])
         
         let encoded = try encoder.encode(source)
-        let decoded = try decoder.decode(KPSerial.self, from: encoded)
+        let decoded = try decoder.decode(KPSerialMetadata.self, from: encoded)
 
         XCTAssertEqual(decoded, source)
         XCTAssertTrue(decoded == source)

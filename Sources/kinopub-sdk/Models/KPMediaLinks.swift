@@ -38,7 +38,7 @@ public extension KPMediaLinks {
         public let height: Int
         public let quality: String
         public let file: String
-        public let url: [String: URL]
+        public let url: [String: URL]?
         
         public required init(json: KPJson) throws {
             self.codec = try json.parse(key: "codec")
@@ -47,18 +47,22 @@ public extension KPMediaLinks {
             self.quality = try json.parse(key: "quality")
             self.file = try json.parse(key: "file")
             
-            let urls = try json.parse(key: "url", type: KPJson.self)
-            var url = [String: URL]()
-            for (key, value) in urls {
-                guard let value = value as? String, let link = URL(string: value) else {
-                    throw ParsingError.wrongType(key: NSNull(), expectedType: String(describing: URL.self), actualType: String(describing: Swift.type(of: value)))
+            if let urls = try? json.parse(key: "url", type: KPJson.self) {
+                var url = [String: URL]()
+                for (key, value) in urls {
+                    guard let value = value as? String, let link = URL(string: value) else {
+                        throw ParsingError.wrongType(key: NSNull(), expectedType: String(describing: URL.self), actualType: String(describing: Swift.type(of: value)))
+                    }
+                    url[key] = link
                 }
-                url[key] = link
+                self.url = url
             }
-            self.url = url
+            else {
+                self.url = [:]
+            }
         }
         
-        public init(codec: String, width: Int, height: Int, quality: String, file: String, url: [String : URL]) {
+        public init(codec: String, width: Int, height: Int, quality: String, file: String, url: [String : URL]?) {
             self.codec = codec
             self.width = width
             self.height = height

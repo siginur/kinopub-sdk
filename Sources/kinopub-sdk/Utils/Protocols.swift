@@ -21,7 +21,7 @@ public extension KPJsonRepresentable {
     }
 }
 
-protocol CouldBeInWatchList: KPContent {}
+protocol CouldBeInWatchList: KPContentMetadata {}
 extension CouldBeInWatchList {
     public func toggleWatchList(session: KPSession? = KPSession.current, completionHandler: @escaping (Result<Bool, KPError>) -> ()) {
         API.shared.send(accessToken: session?.accessToken, httpMethod: .get, path: "/v1/watching/togglewatchlist", queryParams: ["id": "\(self.id)"]) { result in
