@@ -14,7 +14,7 @@ class KPEpisodeTests: XCTestCase {
     let decoder = JSONDecoder()
 
     func testCodable() throws {
-        let source = KPEpisode(id: 2, seasonNumber: 3, number: 4, title: "title", duration: 5, time: 6, status: 7, updated: Date())
+        let source = KPEpisode(id: 2, seasonNumber: 3, number: 4, title: "title", duration: 5, time: 6, status: 7, thumbnail: URL(string: "https://t.com/1")!, updated: Date())
         
         let encoded = try encoder.encode(source)
         let decoded = try decoder.decode(KPEpisode.self, from: encoded)

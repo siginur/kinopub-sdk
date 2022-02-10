@@ -16,6 +16,7 @@ public class KPEpisode: Codable, Equatable, Identifiable, KPJsonRepresentable {
     public let duration: TimeInterval
     public let time: TimeInterval
     public let status: Int
+    public let thumbnail: URL?
     public let updated: Date?
     
     public required init(json: KPJson) throws {
@@ -24,21 +25,27 @@ public class KPEpisode: Codable, Equatable, Identifiable, KPJsonRepresentable {
         self.number = try json.parse(key: "number")
         self.title = try json.parse(key: "title")
         self.duration = try json.parse(key: "duration")
+        var thumbnail: URL?
+        var updated: Date?
         let watching: KPJson
         do {
-            // For request: GET /v1/watching?id=12076
-            watching = try json.parse(key: "watching", type: KPJson.self)
-            
-        } catch {
             // For request: GET /v1/items/12076
+            thumbnail = try json.parse(key: "thumbnail")
+            updated = nil
+            watching = try json.parse(key: "watching", type: KPJson.self)
+        } catch {
+            // For request: GET /v1/watching?id=12076
+            thumbnail = nil
+            updated = try? json.parse(key: "updated")
             watching = json
         }
         self.time = try watching.parse(key: "time")
         self.status = try watching.parse(key: "status")
-        self.updated = try? json.parse(key: "updated")
+        self.thumbnail = thumbnail
+        self.updated = updated
     }
     
-    public init(id: Int, seasonNumber: Int?, number: Int, title: String, duration: TimeInterval, time: TimeInterval, status: Int, updated: Date?) {
+    public init(id: Int, seasonNumber: Int?, number: Int, title: String, duration: TimeInterval, time: TimeInterval, status: Int, thumbnail: URL?, updated: Date?) {
         self.id = id
         self.seasonNumber = seasonNumber
         self.number = number
@@ -46,6 +53,7 @@ public class KPEpisode: Codable, Equatable, Identifiable, KPJsonRepresentable {
         self.duration = duration
         self.time = time
         self.status = status
+        self.thumbnail = thumbnail
         self.updated = updated
     }
     
@@ -67,6 +75,7 @@ public class KPEpisode: Codable, Equatable, Identifiable, KPJsonRepresentable {
         lhs.duration == rhs.duration &&
         lhs.time == rhs.time &&
         lhs.status == rhs.status &&
+        lhs.thumbnail == rhs.thumbnail &&
         lhs.updated == rhs.updated
     }
 
