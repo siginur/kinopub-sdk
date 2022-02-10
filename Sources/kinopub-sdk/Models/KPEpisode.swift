@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPEpisode: Codable, Equatable, Identifiable, KPJsonRepresentable {
+public class KPEpisode: Codable, Hashable, Identifiable, KPJsonRepresentable {
     
     public let id: Int
     public let seasonNumber: Int?
@@ -55,6 +55,18 @@ public class KPEpisode: Codable, Equatable, Identifiable, KPJsonRepresentable {
         self.status = status
         self.thumbnail = thumbnail
         self.updated = updated
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(seasonNumber)
+        hasher.combine(number)
+        hasher.combine(title)
+        hasher.combine(duration)
+        hasher.combine(time)
+        hasher.combine(status)
+        hasher.combine(thumbnail)
+        hasher.combine(updated)
     }
     
     public func getMediaLinks(session: KPSession? = KPSession.current, completionHandler: @escaping (Result<KPMediaLinks, KPError>) -> ()) {

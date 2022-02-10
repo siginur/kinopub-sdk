@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPContentMetadata: Codable, Equatable, Identifiable, KPJsonRepresentable {
+public class KPContentMetadata: Codable, Hashable, Identifiable, KPJsonRepresentable {
     
     public let id: Int
     public let title: String
@@ -23,6 +23,12 @@ public class KPContentMetadata: Codable, Equatable, Identifiable, KPJsonRepresen
         self.id = id
         self.title = title
         self.type = type
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+        hasher.combine(type)
     }
     
     public static func == (lhs: KPContentMetadata, rhs: KPContentMetadata) -> Bool {

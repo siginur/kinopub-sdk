@@ -36,6 +36,11 @@ public class KPSerial: KPContent {
         try super.encode(to: encoder)
     }
     
+    public override func hash(into hasher: inout Hasher) {
+        super.hash(into: &hasher)
+        hasher.combine(seasons)
+    }
+    
     public static func == (lhs: KPSerial, rhs: KPSerial) -> Bool {
         return lhs as KPContent == rhs as KPContent &&
         lhs.seasons == rhs.seasons

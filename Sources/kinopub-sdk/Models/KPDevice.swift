@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPDevice: Codable, Equatable, Identifiable, KPJsonRepresentable {
+public class KPDevice: Codable, Hashable, Identifiable, KPJsonRepresentable {
     
     public let id: Int
     public let title: String
@@ -43,6 +43,18 @@ public class KPDevice: Codable, Equatable, Identifiable, KPJsonRepresentable {
         self.settings = settings
     }
     
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+        hasher.combine(hardware)
+        hasher.combine(software)
+        hasher.combine(created)
+        hasher.combine(updated)
+        hasher.combine(lastSeen)
+        hasher.combine(isBrowser)
+        hasher.combine(settings)
+    }
+    
     public func remove(session: KPSession? = KPSession.current, completionHandler: @escaping (KPError?) -> ()) {
         API.shared.send(accessToken: session?.accessToken, httpMethod: .post, path: "/v1/devide/\(id)/remove") { result in
             switch result {
@@ -70,7 +82,7 @@ public class KPDevice: Codable, Equatable, Identifiable, KPJsonRepresentable {
 
 public extension KPDevice {
     
-    class Settings: Codable, Equatable, KPJsonRepresentable {
+    class Settings: Codable, Hashable, KPJsonRepresentable {
         
         public let supportSSL: Bool
         public let supportHEVC: Bool
@@ -89,6 +101,13 @@ public extension KPDevice {
             self.supportHEVC = supportHEVC
             self.supportHDR = supportHDR
             self.support4k = support4k
+        }
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(supportSSL)
+            hasher.combine(supportHEVC)
+            hasher.combine(supportHDR)
+            hasher.combine(support4k)
         }
         
         public static func == (lhs: KPDevice.Settings, rhs: KPDevice.Settings) -> Bool {

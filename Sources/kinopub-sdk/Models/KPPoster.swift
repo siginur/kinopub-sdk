@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPPoster: Codable, Equatable, Identifiable, KPJsonRepresentable {
+public class KPPoster: Codable, Hashable, Identifiable, KPJsonRepresentable {
     
     public let small: URL
     public let medium: URL
@@ -26,6 +26,13 @@ public class KPPoster: Codable, Equatable, Identifiable, KPJsonRepresentable {
         self.medium = medium
         self.big = big
         self.wide = wide
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(small)
+        hasher.combine(medium)
+        hasher.combine(big)
+        hasher.combine(wide)
     }
     
     public static func == (lhs: KPPoster, rhs: KPPoster) -> Bool {

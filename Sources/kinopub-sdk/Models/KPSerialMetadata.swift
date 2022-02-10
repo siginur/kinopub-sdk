@@ -36,6 +36,11 @@ public class KPSerialMetadata: KPContentMetadata, CouldBeInWatchList {
         try super.encode(to: encoder)
     }
     
+    public override func hash(into hasher: inout Hasher) {
+        super.hash(into: &hasher)
+        hasher.combine(seasons)
+    }
+    
     public static func == (lhs: KPSerialMetadata, rhs: KPSerialMetadata) -> Bool {
         return lhs as KPContentMetadata == rhs as KPContentMetadata &&
         lhs.seasons == rhs.seasons

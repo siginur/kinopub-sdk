@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPSeason: Codable, Equatable, Identifiable, KPJsonRepresentable {
+public class KPSeason: Codable, Hashable, Identifiable, KPJsonRepresentable {
     
     public let id: Int
     public let number: Int
@@ -33,6 +33,13 @@ public class KPSeason: Codable, Equatable, Identifiable, KPJsonRepresentable {
         self.number = number
         self.status = status
         self.episodes = episodes
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(number)
+        hasher.combine(status)
+        hasher.combine(episodes)
     }
     
     public static func == (lhs: KPSeason, rhs: KPSeason) -> Bool {

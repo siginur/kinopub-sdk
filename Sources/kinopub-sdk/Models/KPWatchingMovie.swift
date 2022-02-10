@@ -42,6 +42,12 @@ public class KPWatchingMovie: KPContentMetadata {
         try super.encode(to: encoder)
     }
     
+    public override func hash(into hasher: inout Hasher) {
+        super.hash(into: &hasher)
+        hasher.combine(subtype)
+        hasher.combine(poster)
+    }
+    
     public static func == (lhs: KPWatchingMovie, rhs: KPWatchingMovie) -> Bool {
         return lhs as KPContentMetadata == rhs as KPContentMetadata &&
         lhs.subtype == rhs.subtype &&

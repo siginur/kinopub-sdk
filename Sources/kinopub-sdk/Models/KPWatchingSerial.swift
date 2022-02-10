@@ -43,6 +43,12 @@ public class KPWatchingSerial: KPWatchingMovie, CouldBeInWatchList {
         try super.encode(to: encoder)
     }
     
+    public override func hash(into hasher: inout Hasher) {
+        super.hash(into: &hasher)
+        hasher.combine(watched)
+        hasher.combine(new)
+    }
+    
     public static func == (lhs: KPWatchingSerial, rhs: KPWatchingSerial) -> Bool {
         return lhs as KPWatchingMovie == rhs as KPWatchingMovie &&
         lhs.watched == rhs.watched && 

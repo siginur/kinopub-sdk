@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPUser: Codable, Equatable, Identifiable, KPJsonRepresentable {
+public class KPUser: Codable, Hashable, Identifiable, KPJsonRepresentable {
     
     public let username: String
     public let name: String
@@ -29,6 +29,14 @@ public class KPUser: Codable, Equatable, Identifiable, KPJsonRepresentable {
         self.avatar = avatar
         self.registrationDate = registrationDate
         self.subscriptionExpiryDate = subscriptionExpiryDate
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(username)
+        hasher.combine(name)
+        hasher.combine(avatar)
+        hasher.combine(registrationDate)
+        hasher.combine(subscriptionExpiryDate)
     }
     
     public static func == (lhs: KPUser, rhs: KPUser) -> Bool {

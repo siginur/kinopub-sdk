@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KPMediaLinks: Codable, Equatable, Identifiable, KPJsonRepresentable {
+public class KPMediaLinks: Codable, Hashable, Identifiable, KPJsonRepresentable {
     public let id: Int
     public let files: [File]
     public let subtitles: [Subtitle]
@@ -24,6 +24,12 @@ public class KPMediaLinks: Codable, Equatable, Identifiable, KPJsonRepresentable
         self.subtitles = subtitles
     }
     
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(files)
+        hasher.combine(subtitles)
+    }
+    
     public static func == (lhs: KPMediaLinks, rhs: KPMediaLinks) -> Bool {
         return lhs.id == rhs.id &&
         lhs.files == rhs.files &&
@@ -32,7 +38,7 @@ public class KPMediaLinks: Codable, Equatable, Identifiable, KPJsonRepresentable
 }
 
 public extension KPMediaLinks {
-    class File: Codable, Equatable, KPJsonRepresentable {
+    class File: Codable, Hashable, KPJsonRepresentable {
         public let codec: String
         public let width: Int
         public let height: Int
@@ -71,6 +77,15 @@ public extension KPMediaLinks {
             self.url = url
         }
         
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(codec)
+            hasher.combine(width)
+            hasher.combine(height)
+            hasher.combine(quality)
+            hasher.combine(file)
+            hasher.combine(url)
+        }
+        
         public static func == (lhs: KPMediaLinks.File, rhs: KPMediaLinks.File) -> Bool {
             return lhs.codec == rhs.codec &&
             lhs.width == rhs.width &&
@@ -81,7 +96,7 @@ public extension KPMediaLinks {
         }
     }
     
-    class Subtitle: Codable, Equatable, KPJsonRepresentable {
+    class Subtitle: Codable, Hashable, KPJsonRepresentable {
         public let lang: String
         public let shift: Int
         public let embed: Bool
@@ -105,6 +120,15 @@ public extension KPMediaLinks {
             self.forced = forced
             self.file = file
             self.url = url
+        }
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(lang)
+            hasher.combine(shift)
+            hasher.combine(embed)
+            hasher.combine(forced)
+            hasher.combine(file)
+            hasher.combine(url)
         }
         
         public static func == (lhs: KPMediaLinks.Subtitle, rhs: KPMediaLinks.Subtitle) -> Bool {

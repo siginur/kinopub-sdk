@@ -115,6 +115,24 @@ public class KPContent: KPContentMetadata {
         try super.encode(to: encoder)
     }
     
+    public override func hash(into hasher: inout Hasher) {
+        super.hash(into: &hasher)
+        hasher.combine(year)
+        hasher.combine(cast)
+        hasher.combine(director)
+        hasher.combine(plot)
+        hasher.combine(imdb)
+        hasher.combine(imdbRating)
+        hasher.combine(imdbVotes)
+        hasher.combine(kinopoisk)
+        hasher.combine(kinopoiskRating)
+        hasher.combine(kinopoiskVotes)
+        hasher.combine(rating)
+        hasher.combine(ratingVotes)
+        hasher.combine(ratingPercentage)
+        hasher.combine(poster)
+    }
+    
     public static func == (lhs: KPContent, rhs: KPContent) -> Bool {
         return lhs as KPContentMetadata == rhs as KPContentMetadata &&
         lhs.year == rhs.year &&
