@@ -54,6 +54,7 @@ public enum APIError: Error, CustomStringConvertible {
 public enum ParsingError: Error, CustomStringConvertible {
     case keyIsMissing(AnyHashable)
     case wrongType(key: AnyHashable, expectedType: String, actualType: String)
+    case conversion(key: AnyHashable, sourceType: String, targetType: String)
     case valueIsNil(AnyHashable)
     
     public var localizedDescription: String {
@@ -62,6 +63,8 @@ public enum ParsingError: Error, CustomStringConvertible {
             return "ParsingError: key '\(key)' is missing"
         case .wrongType(let key, let expectedType, let actualType):
             return "ParsingError: expected type is \(expectedType), actual type is \(actualType) for key '\(key)'"
+        case .conversion(let key, let sourceType, let targetType):
+            return "ParsingError: conversion failed from type \(sourceType) to type \(targetType) for key '\(key)'"
         case .valueIsNil(let key):
             return "ParsingError: value for key '\(key)' is null"
         }

@@ -304,6 +304,82 @@ public class KPSession: Codable, Hashable, Identifiable {
         }
     }
     
+    public func getBookmarkFolders(completionHandler: @escaping (Result<[KPBookmarkFolder], KPError>) -> ()) {
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/bookmarks") { result in
+            switch result {
+            case .success(let response):
+                do {
+                    completionHandler(.success(try response.decode(key: "items", type: [KPBookmarkFolder].self)))
+                } catch {
+                    completionHandler(.failure(.apiError(.parsingError(error))))
+                }
+            case .failure(let error):
+                completionHandler(.failure(.apiError(error)))
+            }
+        }
+    }
+    
+    public func getBookmarkFolderItems(folderId: Int, completionHandler: @escaping (Result<[KPContent], KPError>) -> ()) {
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/bookmarks/\(folderId)") { result in
+            switch result {
+            case .success(let response):
+                do {
+                    completionHandler(.success(try response.decode(key: "items", type: [KPContent].self)))
+                } catch {
+                    completionHandler(.failure(.apiError(.parsingError(error))))
+                }
+            case .failure(let error):
+                completionHandler(.failure(.apiError(error)))
+            }
+        }
+    }
+    
+    public func addToBookmarks(itemId: Int, folderId: Int, completionHandler: @escaping (KPError?) -> ()) {
+        let data: Data
+        do {
+            data = try JSONSerialization.data(withJSONObject: [
+                "item": itemId,
+                "folder": folderId
+            ], options: [])
+        } catch {
+            DispatchQueue.global().async {
+                completionHandler(KPError.other(error))
+            }
+            return
+        }
+        API.shared.send(accessToken: accessToken, httpMethod: .post, path: "/v1/bookmarks/add", body: data) { result in
+            switch result {
+            case .success:
+                completionHandler(nil)
+            case .failure(let error):
+                completionHandler(KPError.apiError(error))
+            }
+        }
+    }
+    
+    public func removeFromBookmarks(itemId: Int, folderId: Int, completionHandler: @escaping (KPError?) -> ()) {
+        let data: Data
+        do {
+            data = try JSONSerialization.data(withJSONObject: [
+                "item": itemId,
+                "folder": folderId
+            ], options: [])
+        } catch {
+            DispatchQueue.global().async {
+                completionHandler(KPError.other(error))
+            }
+            return
+        }
+        API.shared.send(accessToken: accessToken, httpMethod: .post, path: "/v1/bookmarks/remove-item", body: data) { result in
+            switch result {
+            case .success:
+                completionHandler(nil)
+            case .failure(let error):
+                completionHandler(KPError.apiError(error))
+            }
+        }
+    }
+    
 }
 
 
@@ -407,6 +483,18 @@ public extension KPSession {
     func getVideoLink(byFilename file: String, type: String) async throws -> URL {
         return try await withCheckedThrowingContinuation({ continuation in
             getVideoLink(byFilename: file, type: type, completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getBookmarkFolders() async throws -> [KPBookmarkFolder] {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getBookmarkFolders(completionHandler: continuation.resume(with:))
+        })
+    }
+    
+    func getBookmarkFolderItems(folderId: Int) async throws -> [KPContent] {
+        return try await withCheckedThrowingContinuation({ continuation in
+            getBookmarkFolderItems(folderId: folderId, completionHandler: continuation.resume(with:))
         })
     }
     

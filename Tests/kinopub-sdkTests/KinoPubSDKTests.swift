@@ -8,7 +8,7 @@
 import XCTest
 @testable import kinopub_sdk
 
-let accessToken = "a8vapwbh0i9h3yiu9wnaox5i5p3olf72"
+let accessToken = "jqn5andu1g7zx19ezwxcyk0kxo0xrwgs"
 
 final class KinoPubSDKTests: XCTestCase {
     
