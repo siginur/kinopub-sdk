@@ -16,9 +16,9 @@ public class KPContent: KPContentMetadata {
     public let imdb: Int?
     public let imdbRating: Double?
     public let imdbVotes: Int?
-    public let kinopoisk: Int
-    public let kinopoiskRating: Double
-    public let kinopoiskVotes: Int
+    public let kinopoisk: Int?
+    public let kinopoiskRating: Double?
+    public let kinopoiskVotes: Int?
     public let rating: Int
     public let ratingVotes: Int
     public let ratingPercentage: Int
@@ -32,9 +32,9 @@ public class KPContent: KPContentMetadata {
         self.imdb = try? json.parse(key: "imdb")
         self.imdbRating = try? json.parse(key: "imdb_rating")
         self.imdbVotes = try? json.parse(key: "imdb_votes")
-        self.kinopoisk = try json.parse(key: "kinopoisk")
-        self.kinopoiskRating = try json.parse(key: "kinopoisk_rating")
-        self.kinopoiskVotes = try json.parse(key: "kinopoisk_votes")
+        self.kinopoisk = try? json.parse(key: "kinopoisk")
+        self.kinopoiskRating = try? json.parse(key: "kinopoisk_rating")
+        self.kinopoiskVotes = try? json.parse(key: "kinopoisk_votes")
         self.rating = try json.parse(key: "rating")
         self.ratingVotes = try json.parse(key: "rating_votes")
         self.ratingPercentage = try json.parse(key: "rating_percentage")
