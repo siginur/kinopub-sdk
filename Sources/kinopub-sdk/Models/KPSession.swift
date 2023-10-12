@@ -498,4 +498,32 @@ public extension KPSession {
         })
     }
     
+    func search(query: String, type: String? = nil, field: String? = nil) async throws -> [KPContent] {
+        var params = [
+            "q": query,
+            "sectioned": "0"
+        ]
+        if let type {
+            params["type"] = type
+        }
+        if let field {
+            params["field"] = field
+        }
+        let response = try await API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/search", queryParams: params)
+        return try response.decode(key: "items", type: [KPContent].self)
+    }
+    
+    func searchGrouped(query: String, field: String? = nil) async throws -> [String: [KPContent]] {
+        var params = [
+            "q": query,
+            "sectioned": "1"
+        ]
+        if let field {
+            params["field"] = field
+        }
+        
+        let response = try await API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/search", queryParams: params)
+        return try response.decode(key: "items", type: [String: [KPContent]].self)
+    }
+    
 }

@@ -140,6 +140,73 @@ class API {
     }
 }
 
+@available(iOS 13.0.0, *)
+extension API {
+    func getDeviceCode(clientId: String, clientSecret: String, completionHandler: @escaping (Result<AuthenticationDeviceInfo, APIError>) -> ()) async throws -> AuthenticationDeviceInfo {
+        let params = [
+            "grant_type": "device_code",
+            "client_id": clientId,
+            "client_secret": clientSecret
+        ]
+        
+        let response = try await send(httpMethod: .post, path: "/oauth2/device", queryParams: params)
+        return try response.decode(AuthenticationDeviceInfo.self)
+    }
+    
+    func getAccessToken(clientId: String, clientSecret: String, code: String) async throws -> AuthenticationUserInfo {
+        let params = [
+            "grant_type": "device_token",
+            "client_id": clientId,
+            "client_secret": clientSecret,
+            "code": code
+        ]
+        
+        let response = try await send(httpMethod: .post, path: "/oauth2/device", queryParams: params)
+        return try response.decode(AuthenticationUserInfo.self)
+    }
+    
+    func refreshAccessToken(clientId: String, clientSecret: String, refreshToken: String) async throws -> AuthenticationUserInfo {
+        let params = [
+            "grant_type": "refresh_token",
+            "client_id": clientId,
+            "client_secret": clientSecret,
+            "refresh_token": refreshToken
+        ]
+        
+        let response = try await send(httpMethod: .post, path: "/oauth2/token", queryParams: params)
+        return try response.decode(AuthenticationUserInfo.self)
+    }
+    
+    func send(accessToken: String? = nil, httpMethod: HTTPMethod, path: String, queryParams: [String: String] = [:], body: Data? = nil) async throws -> APIResponse {
+        let urlString = Self.server + path + queryParams.queryString() + (accessToken != nil ? "&access_token=\(accessToken!)" : "")
+        guard let url = URL(string: urlString) else {
+            throw APIError.invalidURL(urlString)
+        }
+        
+        let (data, response) = try await sendRaw(httpMethod: httpMethod, url: url, body: body)
+        guard response.statusCode == 200 else {
+            throw APIError.apiErrorResponse(APIErrorResponse(data: data, response: response))
+        }
+        
+        return APIResponse(data: data, response: response)
+    }
+    
+    fileprivate func sendRaw(httpMethod: HTTPMethod, url: URL, body: Data? = nil, headers: [String: String] = standardHeaders) async throws -> (data: Data, response: HTTPURLResponse) {
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod.rawValue
+        request.httpBody = body
+        for (key, value) in headers {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+        
+        let (data, response) = try await self.session.data(for: request)
+        guard let response = response as? HTTPURLResponse else {
+            throw HTTPError.noResponseData
+        }
+        return (data, response)
+    }
+}
+
 public class APIResponse {
     public let statusCode: Int
     public let data: Data
@@ -181,6 +248,22 @@ public class APIResponse {
     
     func decode<T: KPJsonRepresentable>(path: [String], type: [T].Type) throws -> [T] {
         return try json().parse(path: path, type: [KPJson].self).map(T.init(json:))
+    }
+    
+    func decode<T: KPJsonRepresentable>(key: String, type: [String: T].Type) throws -> [String: T] {
+        return try json().parse(key: key, type: [String: KPJson].self).mapValues(T.init(json:))
+    }
+    
+    func decode<T: KPJsonRepresentable>(path: [String], type: [String: T].Type) throws -> [String: T] {
+        return try json().parse(path: path, type: [String: KPJson].self).mapValues(T.init(json:))
+    }
+    
+    func decode<T: KPJsonRepresentable>(key: String, type: [String: [T]].Type) throws -> [String: [T]] {
+        return try json().parse(key: key, type: [String: [KPJson]].self).mapValues({ try $0.map(T.init(json:)) })
+    }
+    
+    func decode<T: KPJsonRepresentable>(path: [String], type: [String: [T]].Type) throws -> [String: [T]] {
+        return try json().parse(path: path, type: [String: [KPJson]].self).mapValues({ try $0.map(T.init(json:)) })
     }
 }
 
