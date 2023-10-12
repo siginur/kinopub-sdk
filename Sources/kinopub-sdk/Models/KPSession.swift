@@ -319,12 +319,20 @@ public class KPSession: Codable, Hashable, Identifiable {
         }
     }
     
-    public func getBookmarkFolderItems(folderId: Int, completionHandler: @escaping (Result<[KPContent], KPError>) -> ()) {
-        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/bookmarks/\(folderId)") { result in
+    public func getBookmarkFolderItems(folderId: Int, pageIndex: Int? = nil, pageSize: Int? = nil, completionHandler: @escaping (Result<KPPaginationResult<KPContent>, KPError>) -> ()) {
+        var params = [String: String]()
+        if let pageIndex {
+            params["page"] = pageIndex.description
+        }
+        if let pageSize {
+            params["perpage"] = pageSize.description
+        }
+        
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/bookmarks/\(folderId)", queryParams: params) { result in
             switch result {
             case .success(let response):
                 do {
-                    completionHandler(.success(try response.decode(key: "items", type: [KPContent].self)))
+                    completionHandler(.success(try response.decode(type: KPPaginationResult.self)))
                 } catch {
                     completionHandler(.failure(.apiError(.parsingError(error))))
                 }
@@ -380,6 +388,68 @@ public class KPSession: Codable, Hashable, Identifiable {
         }
     }
     
+    public func search(query: String, type: String? = nil, field: String? = nil, pageIndex: Int? = nil, pageSize: Int? = nil, completionHandler: @escaping (Result<KPPaginationResult<KPContent>, KPError>) -> ()) {
+        var params = [
+            "q": query,
+            "sectioned": "0"
+        ]
+        if let type {
+            params["type"] = type
+        }
+        if let field {
+            params["field"] = field
+        }
+        if let pageIndex {
+            params["page"] = pageIndex.description
+        }
+        if let pageSize {
+            params["perpage"] = pageSize.description
+        }
+        
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/search", queryParams: params) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    completionHandler(.success(try response.decode(type: KPPaginationResult<KPContent>.self)))
+                } catch {
+                    completionHandler(.failure(.apiError(.parsingError(error))))
+                }
+            case .failure(let error):
+                completionHandler(.failure(.apiError(error)))
+            }
+        }
+    }
+    
+    public func searchGrouped(query: String, field: String? = nil, pageIndex: Int? = nil, pageSize: Int? = nil, completionHandler: @escaping (Result<[String: KPPaginationResult<KPContent>], KPError>) -> ()) {
+        var params = [
+            "q": query,
+            "sectioned": "1"
+        ]
+        if let field {
+            params["field"] = field
+        }
+        if let pageIndex {
+            params["page"] = pageIndex.description
+        }
+        if let pageSize {
+            params["perpage"] = pageSize.description
+        }
+        
+        API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/search", queryParams: params) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    var json = try response.json()
+                    json.removeValue(forKey: "status")
+                    completionHandler(.success(try json.parse(type: [String: KPJson].self).mapValues(KPPaginationResult<KPContent>.init(json:))))
+                } catch {
+                    completionHandler(.failure(.apiError(.parsingError(error))))
+                }
+            case .failure(let error):
+                completionHandler(.failure(.apiError(error)))
+            }
+        }
+    }
 }
 
 
@@ -492,38 +562,46 @@ public extension KPSession {
         })
     }
     
-    func getBookmarkFolderItems(folderId: Int) async throws -> [KPContent] {
+    func getBookmarkFolderItems(folderId: Int, pageIndex: Int? = nil, pageSize: Int? = nil) async throws -> KPPaginationResult<KPContent> {
         return try await withCheckedThrowingContinuation({ continuation in
-            getBookmarkFolderItems(folderId: folderId, completionHandler: continuation.resume(with:))
+            getBookmarkFolderItems(folderId: folderId, pageIndex: pageIndex, pageSize: pageSize, completionHandler: continuation.resume(with:))
         })
     }
     
-    func search(query: String, type: String? = nil, field: String? = nil) async throws -> [KPContent] {
-        var params = [
-            "q": query,
-            "sectioned": "0"
-        ]
-        if let type {
-            params["type"] = type
-        }
-        if let field {
-            params["field"] = field
-        }
-        let response = try await API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/search", queryParams: params)
-        return try response.decode(key: "items", type: [KPContent].self)
+    func search(query: String, type: String? = nil, field: String? = nil, pageIndex: Int? = nil, pageSize: Int? = nil) async throws -> KPPaginationResult<KPContent> {
+        return try await withCheckedThrowingContinuation({ continuation in
+            search(query: query, type: type, field: field, pageIndex: pageIndex, pageSize: pageSize, completionHandler: continuation.resume(with:))
+        })
     }
     
-    func searchGrouped(query: String, field: String? = nil) async throws -> [String: [KPContent]] {
-        var params = [
-            "q": query,
-            "sectioned": "1"
-        ]
-        if let field {
-            params["field"] = field
-        }
-        
-        let response = try await API.shared.send(accessToken: accessToken, httpMethod: .get, path: "/v1/items/search", queryParams: params)
-        return try response.decode(key: "items", type: [String: [KPContent]].self)
+    func searchGrouped(query: String, field: String? = nil, pageIndex: Int? = nil, pageSize: Int? = nil) async throws -> [String: KPPaginationResult<KPContent>] {
+        return try await withCheckedThrowingContinuation({ continuation in
+            searchGrouped(query: query, field: field, pageIndex: pageIndex, pageSize: pageSize, completionHandler: continuation.resume(with:))
+        })
     }
     
+}
+
+public struct KPPaginationInfo: KPJsonRepresentable {
+    public let totalPages: Int
+    public let currentPage: Int
+    public let pageSize: Int
+    public let totalItemsCount: Int?
+    
+    public init(json: KPJson) throws {
+        totalPages = try json.parse(key: "total")
+        currentPage = try json.parse(key: "current")
+        pageSize = try json.parse(key: "perpage")
+        totalItemsCount = try? json.parse(key: "total_items")
+    }
+}
+
+public struct KPPaginationResult<T>: KPJsonRepresentable where T: KPJsonRepresentable {
+    public let pagination: KPPaginationInfo
+    public let items: [T]
+    
+    public init(json: KPJson) throws {
+        pagination = try json.parse(key: "pagination")
+        items = try json.parse(key: "items")
+    }
 }

@@ -18,6 +18,13 @@ extension Dictionary where Key == String, Value == Any {
         return convertedValue
     }
     
+    func parse<T>(type: T.Type) throws -> T {
+        guard let convertedValue = self as? T else {
+            throw ParsingError.wrongType(key: "", expectedType: String(describing: type), actualType: String(describing: Swift.type(of: self)))
+        }
+        return convertedValue
+    }
+    
     func parse(key: Key) throws -> Int {
         return try self.parse(key: key, type: Int.self)
     }
@@ -49,8 +56,16 @@ extension Dictionary where Key == String, Value == Any {
         return url
     }
     
+    func parse<T: KPJsonRepresentable>() throws -> T {
+        return try T.init(json: self)
+    }
+    
     func parse<T: KPJsonRepresentable>(key: Key) throws -> T {
         return try T.init(json: self.parse(key: key, type: KPJson.self))
+    }
+    
+    func parse<T: KPJsonRepresentable>(key: Key) throws -> [T] {
+        return try self.parse(key: key, type: [KPJson].self).map(T.init(json:))
     }
     
     func parse<T>(path: [Key], type: T.Type) throws -> T {

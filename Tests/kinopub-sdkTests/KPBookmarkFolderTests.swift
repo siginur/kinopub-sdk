@@ -62,7 +62,7 @@ class KPBookmarkFolderTests: XCTestCase {
         
         KPSession.current.getBookmarkFolderItems(folderId: defaultFolderId) { result in
             do {
-                let items = try result.get()
+                let items = try result.get().items
                 XCTAssertGreaterThan(items.count, 0)
                 expectation.fulfill()
             } catch {
@@ -87,7 +87,7 @@ class KPBookmarkFolderTests: XCTestCase {
             // Check that it was added
             KPSession.current.getBookmarkFolderItems(folderId: self.defaultFolderId) { result in
                 do {
-                    let items = try result.get()
+                    let items = try result.get().items
                     XCTAssertTrue(items.contains(where: { $0.id == 94663 }))
                     
                     // Remove from bookmarks
@@ -100,7 +100,7 @@ class KPBookmarkFolderTests: XCTestCase {
                         // Check that it was removed
                         KPSession.current.getBookmarkFolderItems(folderId: self.defaultFolderId) { result in
                             do {
-                                let items = try result.get()
+                                let items = try result.get().items
                                 XCTAssertFalse(items.contains(where: { $0.id == 94663 }))
                                 
                                 expectation.fulfill()
